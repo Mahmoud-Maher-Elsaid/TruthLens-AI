@@ -1,0 +1,63 @@
+# secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# JavaScript
+node_modules/
+.next/
+out/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Python / ML
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+.coverage
+htmlcov/
+.cache/
+/models/
+checkpoints/
+wandb/
+ml/datasets/downloads/
+ml/datasets/processed/
+ml/benchmarks/*.json
+!ml/benchmarks/.gitkeep
+!ml/benchmarks/model_validation.json
+!ml/benchmarks/rag_validation.json
+!ml/benchmarks/baseline_verifier.json
+!ml/benchmarks/finetuned_verifier.json
+!ml/benchmarks/verifier_comparison.json
+!ml/benchmarks/quantization_results.json
+!ml/benchmarks/system_latency.json
+!ml/benchmarks/end_to_end_validation.json
+!ml/benchmarks/experiment2_verifier_comparison.json
+!ml/benchmarks/experiment3_verifier_comparison.json
+ml/training/outputs/
+
+# generated/local data
+data/indexes/
+data/uploads/
+!data/fixtures/real_examples/
+!data/fixtures/real_examples/*.json
+*.faiss
+*.sqlite3
+logs/
+.ngrok2/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

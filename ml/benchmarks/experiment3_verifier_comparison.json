@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "experiment": "experiment3_multi_evidence_contradiction_boundary",
+  "status": "completed_not_promoted",
+  "decision": "KEEP_BASELINE",
+  "hypothesis": "Improve separation between CONTRADICTED and INSUFFICIENT_EVIDENCE using structured claim-plus-multiple-evidence examples, hard contradiction examples, and difficult related-neutral contrasts.",
+  "checkpoint_selection": {
+    "checkpoint": "ml/training/outputs/experiment3-qwen2.5-1.5b-lora-bf16/checkpoint-400",
+    "selection_split": "validation",
+    "selection_metric": "macro_f1",
+    "best_validation_macro_f1": 0.6718931026492623,
+    "optimizer_steps": 450,
+    "epochs": 3
+  },
+  "frozen_held_out_protocol": {
+    "rows": 180,
+    "sha256": "390ca93b325f60a910c1c4a973901915574c570011690c3a7301a708458db94c",
+    "labels": ["SUPPORTED", "CONTRADICTED", "INSUFFICIENT_EVIDENCE"],
+    "test_set_tuning": false
+  },
+  "production_baseline": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "accuracy": 0.6944444444,
+    "macro_f1": 0.6758189801,
+    "per_class_f1": {
+      "SUPPORTED": 0.8095238,
+      "CONTRADICTED": 0.7285714,
+      "INSUFFICIENT_EVIDENCE": 0.4893617
+    }
+  },
+  "experiment3": {
+    "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "adapter_sha256": "2f59b54e3d26aed4ae5395b57b645d2089bf43dce033f32cd0d533e8b7937df5",
+    "accuracy": 0.6444444444,
+    "macro_precision": 0.6637115839,
+    "macro_recall": 0.6444444444,
+    "macro_f1": 0.6232936923,
+    "per_class_metrics": {
+      "SUPPORTED": {"precision": 0.5744680851, "recall": 0.9, "f1": 0.7012987013},
+      "CONTRADICTED": {"precision": 0.75, "recall": 0.7, "f1": 0.724137931},
+      "INSUFFICIENT_EVIDENCE": {"precision": 0.6666666667, "recall": 0.3333333333, "f1": 0.4444444444}
+    },
+    "confusion_matrix_labels": ["SUPPORTED", "CONTRADICTED", "INSUFFICIENT_EVIDENCE"],
+    "confusion_matrix": [[54, 3, 3], [11, 42, 7], [29, 11, 20]],
+    "latency_ms": {"mean": 236.98, "p50": 258.91, "p95": 389.879},
+    "peak_vram_bytes": 3150827008
+  },
+  "promotion_result": {
+    "satisfied": false,
+    "reason": "Held-out macro F1 and accuracy were below the production baseline; INSUFFICIENT_EVIDENCE F1 also declined.",
+    "production_verifier_remains": "cross-encoder/nli-deberta-v3-small"
+  },
+  "artifacts": {
+    "config": "ml/training/experiment3/config.json",
+    "manifest": "ml/training/experiment3/manifest.json",
+    "trainer": "ml/training/experiment3/train.py",
+    "evaluator": "ml/training/experiment3/evaluate.py",
+    "held_out_evaluation": "ml/training/outputs/experiment3-qwen2.5-1.5b-lora-bf16/checkpoint-400/held_out_evaluation.json"
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "completed_at": "2026-10-01T06:27:31.764204+00:00",
+  "environment": {
+    "captured_at": "2026-10-01T06:27:31.830224+00:00",
+    "platform": "Linux-6.18.33.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "pytorch": "2.8.0+cu128",
+    "cuda": {
+      "available": true,
+      "torch_cuda_version": "12.8",
+      "device_count": 1,
+      "model": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+      "vram_bytes": 8589410304,
+      "vram_mib": 8192,
+      "compute_capability": "8.6",
+      "bf16_supported": true,
+      "tensor_probe": {
+        "operation": "dot([1,2], [3,4])",
+        "result": 11.0
+      },
+      "driver_version": "592.82"
+    }
+  },
+  "configuration": {
+    "knowledge_base": "data/demo_kb",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "top_k": 3,
+    "rerank_k": 2,
+    "vector_index": "faiss.IndexFlatIP with normalized embeddings"
+  },
+  "document_loading": {
+    "files": [
+      "eiffel_tower.md"
+    ],
+    "chunks": 2,
+    "metadata_fields": [
+      "chunk_index",
+      "document_name",
+      "expected_chunk_id",
+      "section",
+      "source_path"
+    ],
+    "indexed_chunks": 2
+  },
+  "timing": {
+    "embedding_model_load_seconds": 251.69920377700146,
+    "reranker_model_load_seconds": 3.4254876199993305,
+    "indexing_ms": 643.1129940010578,
+    "mean_retrieval_ms": 15.259300599427661,
+    "mean_rerank_ms": 8.517913199830218
+  },
+  "metrics": {
+    "recall@3": 1.0,
+    "mrr": 0.8,
+    "expected_evidence_rate": 1.0,
+    "citation_preservation_rate": 1.0,
+    "queries": 5
+  },
+  "queries": [
+    {
+      "query": "Where is the Eiffel Tower located?",
+      "expected_text": "Champ de Mars in Paris, France",
+      "expected_chunk_ids": [
+        "17bd0e971b1a"
+      ],
+      "retrieval_ms": 52.11330899874156,
+      "rerank_ms": 16.56583299882186,
+      "expected_evidence_retrieved": true,
+      "citation_metadata_preserved": true,
+      "top_k": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "retrieval_score": 0.7609710097312927,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          },
+          "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889 as the entrance to the 1889 World's Fair. The structure is named after engineer Gustave Eiffel, whose company designed and built it. The tower is 330 metres tall after the installation of its current antenna."
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "retrieval_score": 0.5006090998649597,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          },
+          "text": "The tower was not built in 1920 and it is not located in Rome. It has become a global cultural icon of France and one of the most recognizable structures in the world."
+        }
+      ],
+      "reranked": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "rerank_score": 9.712897300720215,
+          "retrieval_score": 0.7609710097312927,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          }
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "rerank_score": 5.254236221313477,
+          "retrieval_score": 0.5006090998649597,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          }
+        }
+      ]
+    },
+    {
+      "query": "When was the Eiffel Tower constructed?",
+      "expected_text": "constructed from 1887 to 1889",
+      "expected_chunk_ids": [
+        "17bd0e971b1a"
+      ],
+      "retrieval_ms": 7.494378000046709,
+      "rerank_ms": 7.299799999600509,
+      "expected_evidence_retrieved": true,
+      "citation_metadata_preserved": true,
+      "top_k": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "retrieval_score": 0.7755128145217896,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          },
+          "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889 as the entrance to the 1889 World's Fair. The structure is named after engineer Gustave Eiffel, whose company designed and built it. The tower is 330 metres tall after the installation of its current antenna."
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "retrieval_score": 0.5107368230819702,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          },
+          "text": "The tower was not built in 1920 and it is not located in Rome. It has become a global cultural icon of France and one of the most recognizable structures in the world."
+        }
+      ],
+      "reranked": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "rerank_score": 10.399776458740234,
+          "retrieval_score": 0.7755128145217896,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          }
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "rerank_score": 5.911624908447266,
+          "retrieval_score": 0.5107368230819702,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          }
+        }
+      ]
+    },
+    {
+      "query": "How tall is the Eiffel Tower with its current antenna?",
+      "expected_text": "330 metres tall",
+      "expected_chunk_ids": [
+        "17bd0e971b1a"
+      ],
+      "retrieval_ms": 5.700812000213773,
+      "rerank_ms": 5.3626200005965075,
+      "expected_evidence_retrieved": true,
+      "citation_metadata_preserved": true,
+      "top_k": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "retrieval_score": 0.6284052729606628,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          },
+          "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889 as the entrance to the 1889 World's Fair. The structure is named after engineer Gustave Eiffel, whose company designed and built it. The tower is 330 metres tall after the installation of its current antenna."
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "retrieval_score": 0.35482245683670044,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          },
+          "text": "The tower was not built in 1920 and it is not located in Rome. It has become a global cultural icon of France and one of the most recognizable structures in the world."
+        }
+      ],
+      "reranked": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "rerank_score": 8.561286926269531,
+          "retrieval_score": 0.6284052729606628,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          }
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "rerank_score": -8.77779769897461,
+          "retrieval_score": 0.35482245683670044,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          }
+        }
+      ]
+    },
+    {
+      "query": "Was the Eiffel Tower built in 1920?",
+      "expected_text": "not built in 1920",
+      "expected_chunk_ids": [
+        "fd9bfeb2c5bd"
+      ],
+      "retrieval_ms": 5.149116999746184,
+      "rerank_ms": 7.608099000208313,
+      "expected_evidence_retrieved": true,
+      "citation_metadata_preserved": true,
+      "top_k": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "retrieval_score": 0.7034487128257751,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          },
+          "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889 as the entrance to the 1889 World's Fair. The structure is named after engineer Gustave Eiffel, whose company designed and built it. The tower is 330 metres tall after the installation of its current antenna."
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "retrieval_score": 0.6041314005851746,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          },
+          "text": "The tower was not built in 1920 and it is not located in Rome. It has become a global cultural icon of France and one of the most recognizable structures in the world."
+        }
+      ],
+      "reranked": [
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "rerank_score": 8.416706085205078,
+          "retrieval_score": 0.6041314005851746,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          }
+        },
+        {
+          "chunk_id": "17bd0e971b1a",
+          "rerank_score": 5.2934184074401855,
+          "retrieval_score": 0.7034487128257751,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          }
+        }
+      ]
+    },
+    {
+      "query": "Is the Eiffel Tower located in Rome?",
+      "expected_text": "not located in Rome",
+      "expected_chunk_ids": [
+        "fd9bfeb2c5bd"
+      ],
+      "retrieval_ms": 5.83888699839008,
+      "rerank_ms": 5.753213999923901,
+      "expected_evidence_retrieved": true,
+      "citation_metadata_preserved": true,
+      "top_k": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "retrieval_score": 0.6919676065444946,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          },
+          "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889 as the entrance to the 1889 World's Fair. The structure is named after engineer Gustave Eiffel, whose company designed and built it. The tower is 330 metres tall after the installation of its current antenna."
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "retrieval_score": 0.6266845464706421,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          },
+          "text": "The tower was not built in 1920 and it is not located in Rome. It has become a global cultural icon of France and one of the most recognizable structures in the world."
+        }
+      ],
+      "reranked": [
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "rerank_score": 7.8290910720825195,
+          "retrieval_score": 0.6266845464706421,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          }
+        },
+        {
+          "chunk_id": "17bd0e971b1a",
+          "rerank_score": 4.9040021896362305,
+          "retrieval_score": 0.6919676065444946,
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          }
+        }
+      ]
+    }
+  ]
+}

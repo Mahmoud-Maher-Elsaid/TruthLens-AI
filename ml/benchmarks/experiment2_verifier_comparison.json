@@ -1,0 +1,3356 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "completed_at": "2026-10-01T08:34:44.558830+00:00",
+  "environment": {
+    "captured_at": "2026-10-01T08:34:44.593239+00:00",
+    "platform": "Linux-6.18.33.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "pytorch": "2.8.0+cu128",
+    "cuda": {
+      "available": true,
+      "torch_cuda_version": "12.8",
+      "device_count": 1,
+      "model": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+      "vram_bytes": 8589410304,
+      "vram_mib": 8192,
+      "compute_capability": "8.6",
+      "bf16_supported": true,
+      "tensor_probe": {
+        "operation": "dot([1,2], [3,4])",
+        "result": 11.0
+      },
+      "driver_version": "592.82"
+    }
+  },
+  "dataset": {
+    "status": "validated",
+    "test_path": "ml/datasets/processed/experiment2/test.jsonl",
+    "test_sha256": "390ca93b325f60a910c1c4a973901915574c570011690c3a7301a708458db94c",
+    "test_rows": 180,
+    "test_labels": {
+      "CONTRADICTED": 60,
+      "INSUFFICIENT_EVIDENCE": 60,
+      "SUPPORTED": 60
+    },
+    "source_splits": [
+      "dev"
+    ],
+    "controlled_examples_in_test": 0,
+    "leakage": {
+      "train_test_source_ids": 0,
+      "train_test_group_ids": 0,
+      "validation_test_source_ids": 0,
+      "validation_test_group_ids": 0
+    },
+    "experiment1_adapter": "ml/training/outputs/truthlens-qwen2.5-1.5b-lora",
+    "experiment2_adapter": "ml/training/outputs/experiment2-qwen2.5-1.5b-qlora",
+    "experiment2_best_checkpoint": "ml/training/outputs/experiment2-qwen2.5-1.5b-qlora/checkpoint-50",
+    "experiment2_export_matches_best_checkpoint": true,
+    "experiment2_adapter_sha256": "947b9622ac43aeacb4522c8739d1d5d4698dae4ca83fa9a55986ce0c76d28ba3",
+    "missing_artifacts": [],
+    "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "baseline_model": "cross-encoder/nli-deberta-v3-small",
+    "output": "ml/benchmarks/experiment2_verifier_comparison.json"
+  },
+  "same_test_samples": true,
+  "models": {
+    "baseline": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "load_seconds": 4.666015304999746,
+      "runtime_seconds": 2.079707046999829,
+      "latency": {
+        "runs": 180,
+        "mean_ms": 11.542819261052905,
+        "p50_ms": 7.981705999554833,
+        "p95_ms": 9.958221999113448
+      },
+      "peak_vram_bytes": 607539712,
+      "output_validity": {
+        "valid_exact_label_rate": 1.0,
+        "invalid_output_rate": 0.0,
+        "invalid_outputs": 0,
+        "invalid_fallback": "INSUFFICIENT_EVIDENCE"
+      },
+      "metrics": {
+        "samples": 180,
+        "accuracy": 0.6944444444444444,
+        "macro_precision": 0.695565953654189,
+        "macro_recall": 0.6944444444444445,
+        "macro_f1": 0.6758189800742992,
+        "labels": [
+          "SUPPORTED",
+          "CONTRADICTED",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "confusion_matrix": [
+          [
+            51,
+            3,
+            6
+          ],
+          [
+            4,
+            51,
+            5
+          ],
+          [
+            11,
+            26,
+            23
+          ]
+        ],
+        "per_class": {
+          "SUPPORTED": {
+            "precision": 0.7727272727272727,
+            "recall": 0.85,
+            "f1": 0.8095238095238095,
+            "support": 60
+          },
+          "CONTRADICTED": {
+            "precision": 0.6375,
+            "recall": 0.85,
+            "f1": 0.7285714285714285,
+            "support": 60
+          },
+          "INSUFFICIENT_EVIDENCE": {
+            "precision": 0.6764705882352942,
+            "recall": 0.38333333333333336,
+            "f1": 0.48936170212765956,
+            "support": 60
+          }
+        }
+      },
+      "predictions": [
+        {
+          "source_id": "53793:e23112df-9a0d-4fc9-9153-bcd67cc34f65",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "70125:98d21eb0-f3e0-4d68-8cf5-e3e92ccd7759",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "170937:52a63fff-1f6a-47da-9b85-0d841a9c390e",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "141896:63a5e11b-22a7-470e-a495-1d3b133a0b67",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "195843:6c674dc8-ee31-4dd9-b7b0-212e81661644",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "1830:827df733-1994-451e-9c17-2cc2196096cd",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "32401:436ef3ed-aab0-4287-9f0d-d49a144f49b1",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "62118:8d84cd8d-d9e3-4aaf-a14d-15e460ab07a2",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "17859:a25cdec1-0114-4ffd-b05d-f0c6dcfaf93c",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "203034:e12f72b7-4f4d-4c4f-9f05-3bea44915390",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "47296:7bf1b360-32cd-4099-b56f-4546511c00ee",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "1602:10f94530-cf16-43aa-a0a6-4d9743927b8f",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "171534:75903763-8e6b-4c6c-8573-4dad7210ca43",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "110490:af88724d-f455-4344-a0e1-3fadd8506c0f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "216389:2f2da171-53b7-4d46-b933-1c4c0497b6ef",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "205089:9d20efeb-4950-488a-b0d6-5e5650bfcaae",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "202794:94d3c776-a322-41c5-a9f9-dd5987689d52",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "43526:f5e5b83c-5c82-4eb5-bba4-57bbaa82ebf3",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "229304:c800a4b0-07b2-42f5-be78-a3f51dbbd03d",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "130301:1ef75ea9-3847-4b57-8533-802b85de5a02",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "12738:7b098a4e-447e-4aed-b51c-60812b20c975",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "46795:e8ca301b-8049-424d-902c-30d49d9ccb8a",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "126100:40c62b0a-4571-4bb6-a204-e6cc387a9423",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "54690:e345ab9f-4fa6-4b49-a4c1-5da085cad416",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "67212:5dff6bc4-fd1e-483a-a338-7975d9f800c6",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "2862:ce4a92fe-437e-4576-ba29-dc3c57c66893",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "111958:974bf14f-2f5f-462c-9c7d-52b6cae44396",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "69655:20422979-43d0-4ee7-878d-e1c1c8b784af",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "196171:bcc6dbb0-1d56-4dce-85a5-0c6a4617295b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "49738:a84c8939-cef3-4af2-80e3-83aaabac8d67",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "111993:2ee18fd3-fe4a-4b3e-b39e-5d2631555fc9",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "70612:fb8121c6-793b-4a5c-abab-94a7c3a6962e",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "66580:9020fb8b-1565-4522-9a04-3163c897e5c0",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "141716:5d59696e-9c5a-4697-b335-09d68c1ea031",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "64842:8bb920a2-f0e8-425e-aa96-dfc637396b1c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "67950:4fd36ed6-d003-4110-bb5f-65a86aec5cc5",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "27301:51d644c9-ff08-44e2-b6a3-3fa72c9775cf",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "46333:8015d711-e537-4edc-b5b4-baf44c5dd94c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "50819:891bfab5-e60c-4bf5-862c-64d55c3c0470",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "181992:118e622b-97da-4aa3-aae8-0c40e40cf286",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "27002:05a6003b-9eb3-4598-ae9c-c9798f60b3f7",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "29552:cb81a0b1-8c15-4c9a-bfae-b44cab8ba512",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "196992:cdafd816-edd9-44d0-b93e-1f371a3b8a6a",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "1370:1f6d6582-2eb4-4b17-8367-c23d72358802",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "60952:20048ff9-f51e-4897-bd61-d1f2186c23ae",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "24:fc7849c1-2334-49ad-a6e1-d602ca9b677e",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "96344:2ec08ae2-883b-4a22-975b-8947854c289f",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "215137:5485b61b-e605-43fb-8b62-2bfacad56846",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "127408:ebee86ce-eeca-4376-87d8-735fb5384aae",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "219299:e27b7b5b-4bbf-4fa0-b833-478434b2af8b",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "218107:ea2c9944-59c7-46a5-8dfb-934156651dd1",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "118736:cf5afbf0-45bb-494d-b5c2-aa6835aa6f9d",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "106132:fd516c5f-b4c0-4ce0-b6f2-4da8a51d8f77",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "228578:b805a01a-8ee6-49c4-a63e-3735498f16ee",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "174870:5c2956fb-c4b8-4af0-8e51-de03a410799c",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "163990:fdcd4589-87d3-4f53-8979-088b92e86a23",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "226838:0f67845a-7629-404d-955f-19ebf583f117",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "152492:2af2bcfd-1e15-479f-93e4-0974078e4aa1",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "53534:0cb37274-4078-4e55-a548-763133eb4b4b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "54348:8fe7a229-eea1-46b9-b96d-6da7441d4949",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "125105:1f0395d0-f93b-4072-84b0-e071595f9b23",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "27754:c26bfb99-875a-423d-8e33-cea080690890",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "128676:03a17e77-19fe-4a7c-8696-d95925119e57",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "186936:2660d2ba-7c65-4295-b275-68147dd6a19d",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "128454:d634a9fb-6ec5-487f-a7e6-8b99bbd7c1d4",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "75749:76ad6ce9-7b02-485f-b7c7-bcb5b9f57f19",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "137334:46c17d52-bbbb-4922-ad59-2aedfa55a35e",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "53470:001de03f-a392-41c9-ad69-febf125ec814",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "166840:e62b00cf-df8a-453f-814b-ff5e8e1669bf",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "137644:3a24d5bd-ffa6-4941-9d43-9820aa496309",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "73213:bed8bb59-ce4f-429d-a868-93a9a4235955",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "15621:56f166df-1793-4cf8-91bb-741337f5eca8",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "61892:f6addd15-6c7a-4f10-bc29-d767b037eb26",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "173727:2d2f68f8-1cff-4677-a4e0-f04a46e3bdd6",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "83470:801f275f-558b-4b44-be36-d15d74a6e17a",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "116159:1315393f-7eb0-4e39-9957-a4c1111b41c5",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "98264:4a2dc3f6-a9f5-408d-8493-063b50b8d469",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "200291:6f804dd3-44a7-47b8-bb95-8a674a9cc803",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "197340:28c27606-23f4-4fa3-949a-92c60d47b61a",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "95480:4e122a17-5c44-4938-a3db-a35858ef65b4",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "220205:20d1d140-d401-4ef2-ad49-cd978db23c5c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "205074:ae4e5e40-8378-44b2-97bb-3d425255d934",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "192825:b14d472c-9ff9-4670-a425-19e4986ce460",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "152356:01806e1a-ce85-425d-a9e1-8fada5ad8d15",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "47885:2ad64be0-6762-424d-a7b5-d44310e0562e",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "70833:69c08e3a-9700-4bc7-addf-ffd36caa2ce5",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "100663:a07fe9e6-4ac6-4f2f-9c0f-57aad739538b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "195839:00d9766d-f95a-4aec-b46a-766ec2c73ace",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "160417:2afc12c7-29ec-4e03-acb8-430743b6228f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "118874:90b14385-d835-4391-ad74-e0f3c7f6e715",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "305:55b7f909-62ce-4c3b-ab8b-8cf8f3700bde",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "123364:92be5cd5-7955-4fdf-8f0f-f364780855dc",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "88875:22eaa833-a8e2-45d8-8d52-15c19b86d8cb",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "107725:f72e8ae6-8310-46dc-88fb-efdb01a30a41",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "181881:6be15669-f3a4-40ab-b43f-aadb27e3fc80",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "196155:b8b4aa6e-bd98-4b60-8b59-4bc18972477b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "195073:e68dbe38-9821-4218-8b13-08a0bbbad30d",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "53662:b3c9118d-4c7d-4368-850f-d7a602c553dd",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "143951:5caaab0a-615e-4f8e-96a7-b8102fd9b623",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "173734:bc9e07ef-afbf-4c3b-85fc-48aff51d405f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "204974:f31da86e-716d-42e5-baa7-c3a55dd3d8d8",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "35720:d4cfe5a3-5d4c-4c59-84c6-602586c4d33f",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "23118:69d96974-6967-4add-8899-b4d0fc6e4480",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "79984:8f62b8ee-a5fc-4ca2-8721-c60e51474516",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "179832:2468d4eb-df2b-44cf-81df-5d70f8507dfd",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "148516:2520eec6-5f90-4a58-bf60-02c1b63d8477",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "95679:a9503dd9-7376-47fc-b7ab-307f16cde860",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "170005:38b62393-626f-4d57-81cf-6061f6c006c6",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "213428:3df18331-ed8c-4a4e-b507-91f9a825c58c",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "21547:36bc76d4-9983-4f9e-a8fe-daaf80a6217d",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "11538:42b3be1a-205a-410b-8500-1716149e8e19",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "188638:d2efdc2a-b02f-4b59-8900-ffdc87400d8b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "154633:559a5b99-21a0-4bdc-bf63-df49b20d0e57",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "193548:9c52c50e-c799-4183-bd38-3c88ed9637c6",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "89034:89e78db6-e512-4f2c-9967-53aaa2fdada9",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "48147:b352d64a-0d40-4f99-bf67-392aafc2a43d",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "89027:cfc2a2ca-f415-4f52-bf94-4d35fe87e4e3",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "15227:a7aa3e29-48a2-4098-969e-fc823b5de852",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "143041:5b8b78af-4bd9-4219-a051-4a6441020bde",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "224376:fd2c6aac-7b15-4a33-b584-96c223147160",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "38500:1749555d-b9b0-40f2-8164-30866f1ae6e6",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "116026:2f8ea152-876a-420a-9206-8bc078777675",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "95082:979c650b-0c0e-4c21-92b0-732be2243a55",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "140461:a6e6ae48-dfec-40ad-b02e-1fa943ad0aae",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "46911:71a1c381-278e-49d3-8371-e2bc09fcbd13",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "126172:4f956988-297d-4141-b183-8e6ae3ff72df",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "182442:24788f64-6bab-4748-8c83-bb26020dbc7e",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "180709:84225de3-df14-4d40-8390-1e2b4164796b",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "4824:997603b6-986e-4819-aae0-87b6d631e67c",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "94055:5a2a6e79-a325-4bb2-99ed-f4c3f8854c04",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "22616:45973b9c-8060-4eda-8f0f-6f4258b7eaa0",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "225798:3e20799f-dbed-4fd7-8d09-6c4332bc64eb",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "151118:32b6d7b2-7aa3-4654-9924-b4d110af44d5",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "155198:ceca9f8f-c13e-43fb-b953-dbec33333226",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "106802:616737ee-97f2-4b2d-8b6c-5a857cc95bf5",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "61922:55353741-2522-4811-b2d0-0af8fa82020b",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "37537:84024732-d9ff-4937-9179-e5620893d54e",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "96135:8911ac50-9c76-4901-9de3-2548908614ee",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "21085:e2a127ab-1040-4d22-ac4f-5cd177488c0c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "194260:11eb7b1c-516e-4a2e-a8bd-b7bff90df8d3",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "24779:b5142cdf-ae5e-4f0c-a422-14000da20da2",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "218238:16d12e7d-7cbd-41d5-985d-91927bac1ec1",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "60515:83eb85ae-43a7-4efe-97f6-d8c3fc234f30",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "122290:f0ca7907-af37-45d4-8f77-b7a73d204fa9",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "23427:3af33a7f-a1ed-464c-b214-40accd8070c7",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "45438:3369b509-f797-4774-b166-a32845381b8b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "197355:a77abbfd-1c48-441c-8411-6b991a477f05",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "199757:5974fa6d-be90-49db-8642-8e726d71e35d",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "179735:019168a2-f689-4fa5-ab24-9770b8cda6f7",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "78244:35857484-ffd9-4e67-9630-e3acc8b906ee",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "26636:e807a1e4-a9a8-4774-921f-c07c49f6dc38",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "149063:e43fed59-c806-4012-b019-ef8f1d27293c",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "7436:7266508a-5b25-4eb9-a781-8365908c0569",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "137376:d7a0f264-9ea4-4d0b-9e34-e8bca93de307",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "193402:ed3b05d2-2eaa-421c-9e2c-ab23bc05d0b2",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "141925:0edcc372-3bee-4354-91d4-6530265533b3",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "83431:d79d8537-9e45-4c11-ae38-4833806abcfa",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "103816:3edd1b5c-de76-4f58-9978-f66ef785517e",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "185400:79c534eb-c6b6-4d4d-85da-90e16dd9a53f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "88385:a91b41b4-0b23-4367-aba2-d77347ad0bc8",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "71815:5a909514-fad1-47e7-9901-ee1d7def8c31",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "55924:991c3c81-860f-4438-b70f-c323495af726",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "48903:00adee27-448d-4816-9ced-16019f5eab7c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "178225:bb8dc512-6e5a-4e14-b471-33510e1868b2",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "63829:e45d2527-ba7f-4e27-80a3-725bbc4914cf",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "130849:d0174749-15f7-48f9-b8f4-b2816cddba6f",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "102751:89d92120-068d-4ee3-af00-8ba9906deb6f",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "55741:c40c01aa-264a-4d45-9f08-4f1bf236e16e",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "103439:191d98cb-0540-4a9d-8195-061bd58bc2ed",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "47222:d3b2666a-1a44-4978-a4fb-7c63d6550dae",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "97002:298dad99-7d25-4925-a3f1-60b78f7d4189",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "94603:fc0e8dbc-c845-4ad8-8573-c5febe4604d1",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "11823:c2a60136-f495-446b-86ca-dbd60e9e312d",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "47202:87c9030c-25b1-4f6f-92c6-627370879918",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "162044:1e852702-f6a9-4e4f-8236-83ba807646e9",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "139090:f79572e6-15de-467c-8f97-b5df6fac90e7",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "62492:03d50cea-4f0e-40b4-9a6c-80421ef40cf2",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED"
+        },
+        {
+          "source_id": "59410:2fe39240-d8cb-48a1-bf3f-d19fd1f3631f",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        },
+        {
+          "source_id": "219674:d740035d-ff4f-49b2-a31f-9b21562581ee",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "89254:cb28ad7f-4899-4ab2-be7c-2520dd697b33",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED"
+        }
+      ]
+    },
+    "experiment1": {
+      "adapter": "ml/training/outputs/truthlens-qwen2.5-1.5b-lora",
+      "runtime_seconds": 63.53839802500079,
+      "latency": {
+        "runs": 180,
+        "mean_ms": 351.9984979500805,
+        "p50_ms": 380.249644500509,
+        "p95_ms": 465.2208450024773
+      },
+      "peak_vram_bytes": 1249357824,
+      "generation": {
+        "do_sample": false,
+        "num_beams": 1,
+        "max_new_tokens": 12
+      },
+      "output_validity": {
+        "valid_exact_label_rate": 1.0,
+        "invalid_output_rate": 0.0,
+        "invalid_outputs": 0,
+        "invalid_fallback": "INSUFFICIENT_EVIDENCE"
+      },
+      "metrics": {
+        "samples": 180,
+        "accuracy": 0.6111111111111112,
+        "macro_precision": 0.6176957376793816,
+        "macro_recall": 0.611111111111111,
+        "macro_f1": 0.6092125441422683,
+        "labels": [
+          "SUPPORTED",
+          "CONTRADICTED",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "confusion_matrix": [
+          [
+            39,
+            8,
+            13
+          ],
+          [
+            3,
+            44,
+            13
+          ],
+          [
+            9,
+            24,
+            27
+          ]
+        ],
+        "per_class": {
+          "SUPPORTED": {
+            "precision": 0.7647058823529411,
+            "recall": 0.65,
+            "f1": 0.7027027027027027,
+            "support": 60
+          },
+          "CONTRADICTED": {
+            "precision": 0.5789473684210527,
+            "recall": 0.7333333333333333,
+            "f1": 0.6470588235294118,
+            "support": 60
+          },
+          "INSUFFICIENT_EVIDENCE": {
+            "precision": 0.5094339622641509,
+            "recall": 0.45,
+            "f1": 0.4778761061946903,
+            "support": 60
+          }
+        }
+      },
+      "predictions": [
+        {
+          "source_id": "53793:e23112df-9a0d-4fc9-9153-bcd67cc34f65",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "70125:98d21eb0-f3e0-4d68-8cf5-e3e92ccd7759",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "170937:52a63fff-1f6a-47da-9b85-0d841a9c390e",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "141896:63a5e11b-22a7-470e-a495-1d3b133a0b67",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "195843:6c674dc8-ee31-4dd9-b7b0-212e81661644",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "1830:827df733-1994-451e-9c17-2cc2196096cd",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "32401:436ef3ed-aab0-4287-9f0d-d49a144f49b1",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "62118:8d84cd8d-d9e3-4aaf-a14d-15e460ab07a2",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "17859:a25cdec1-0114-4ffd-b05d-f0c6dcfaf93c",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "203034:e12f72b7-4f4d-4c4f-9f05-3bea44915390",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "47296:7bf1b360-32cd-4099-b56f-4546511c00ee",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "1602:10f94530-cf16-43aa-a0a6-4d9743927b8f",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "171534:75903763-8e6b-4c6c-8573-4dad7210ca43",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "110490:af88724d-f455-4344-a0e1-3fadd8506c0f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "216389:2f2da171-53b7-4d46-b933-1c4c0497b6ef",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "205089:9d20efeb-4950-488a-b0d6-5e5650bfcaae",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "202794:94d3c776-a322-41c5-a9f9-dd5987689d52",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "43526:f5e5b83c-5c82-4eb5-bba4-57bbaa82ebf3",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "229304:c800a4b0-07b2-42f5-be78-a3f51dbbd03d",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "130301:1ef75ea9-3847-4b57-8533-802b85de5a02",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "12738:7b098a4e-447e-4aed-b51c-60812b20c975",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "46795:e8ca301b-8049-424d-902c-30d49d9ccb8a",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "126100:40c62b0a-4571-4bb6-a204-e6cc387a9423",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "54690:e345ab9f-4fa6-4b49-a4c1-5da085cad416",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "67212:5dff6bc4-fd1e-483a-a338-7975d9f800c6",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "2862:ce4a92fe-437e-4576-ba29-dc3c57c66893",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "111958:974bf14f-2f5f-462c-9c7d-52b6cae44396",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "69655:20422979-43d0-4ee7-878d-e1c1c8b784af",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "196171:bcc6dbb0-1d56-4dce-85a5-0c6a4617295b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "49738:a84c8939-cef3-4af2-80e3-83aaabac8d67",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "111993:2ee18fd3-fe4a-4b3e-b39e-5d2631555fc9",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "70612:fb8121c6-793b-4a5c-abab-94a7c3a6962e",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "66580:9020fb8b-1565-4522-9a04-3163c897e5c0",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "141716:5d59696e-9c5a-4697-b335-09d68c1ea031",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "64842:8bb920a2-f0e8-425e-aa96-dfc637396b1c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "67950:4fd36ed6-d003-4110-bb5f-65a86aec5cc5",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "27301:51d644c9-ff08-44e2-b6a3-3fa72c9775cf",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "46333:8015d711-e537-4edc-b5b4-baf44c5dd94c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "50819:891bfab5-e60c-4bf5-862c-64d55c3c0470",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "181992:118e622b-97da-4aa3-aae8-0c40e40cf286",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "27002:05a6003b-9eb3-4598-ae9c-c9798f60b3f7",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "29552:cb81a0b1-8c15-4c9a-bfae-b44cab8ba512",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "196992:cdafd816-edd9-44d0-b93e-1f371a3b8a6a",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "1370:1f6d6582-2eb4-4b17-8367-c23d72358802",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "60952:20048ff9-f51e-4897-bd61-d1f2186c23ae",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "24:fc7849c1-2334-49ad-a6e1-d602ca9b677e",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "96344:2ec08ae2-883b-4a22-975b-8947854c289f",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "215137:5485b61b-e605-43fb-8b62-2bfacad56846",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "127408:ebee86ce-eeca-4376-87d8-735fb5384aae",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "219299:e27b7b5b-4bbf-4fa0-b833-478434b2af8b",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "218107:ea2c9944-59c7-46a5-8dfb-934156651dd1",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "118736:cf5afbf0-45bb-494d-b5c2-aa6835aa6f9d",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "106132:fd516c5f-b4c0-4ce0-b6f2-4da8a51d8f77",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "228578:b805a01a-8ee6-49c4-a63e-3735498f16ee",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "174870:5c2956fb-c4b8-4af0-8e51-de03a410799c",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "163990:fdcd4589-87d3-4f53-8979-088b92e86a23",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "226838:0f67845a-7629-404d-955f-19ebf583f117",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "152492:2af2bcfd-1e15-479f-93e4-0974078e4aa1",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "53534:0cb37274-4078-4e55-a548-763133eb4b4b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "54348:8fe7a229-eea1-46b9-b96d-6da7441d4949",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "125105:1f0395d0-f93b-4072-84b0-e071595f9b23",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "27754:c26bfb99-875a-423d-8e33-cea080690890",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "128676:03a17e77-19fe-4a7c-8696-d95925119e57",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "186936:2660d2ba-7c65-4295-b275-68147dd6a19d",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "128454:d634a9fb-6ec5-487f-a7e6-8b99bbd7c1d4",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "75749:76ad6ce9-7b02-485f-b7c7-bcb5b9f57f19",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "137334:46c17d52-bbbb-4922-ad59-2aedfa55a35e",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "53470:001de03f-a392-41c9-ad69-febf125ec814",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "166840:e62b00cf-df8a-453f-814b-ff5e8e1669bf",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "137644:3a24d5bd-ffa6-4941-9d43-9820aa496309",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "73213:bed8bb59-ce4f-429d-a868-93a9a4235955",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "15621:56f166df-1793-4cf8-91bb-741337f5eca8",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "61892:f6addd15-6c7a-4f10-bc29-d767b037eb26",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "173727:2d2f68f8-1cff-4677-a4e0-f04a46e3bdd6",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "83470:801f275f-558b-4b44-be36-d15d74a6e17a",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "116159:1315393f-7eb0-4e39-9957-a4c1111b41c5",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "98264:4a2dc3f6-a9f5-408d-8493-063b50b8d469",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "200291:6f804dd3-44a7-47b8-bb95-8a674a9cc803",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "197340:28c27606-23f4-4fa3-949a-92c60d47b61a",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "95480:4e122a17-5c44-4938-a3db-a35858ef65b4",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "220205:20d1d140-d401-4ef2-ad49-cd978db23c5c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "205074:ae4e5e40-8378-44b2-97bb-3d425255d934",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "192825:b14d472c-9ff9-4670-a425-19e4986ce460",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "152356:01806e1a-ce85-425d-a9e1-8fada5ad8d15",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "47885:2ad64be0-6762-424d-a7b5-d44310e0562e",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "70833:69c08e3a-9700-4bc7-addf-ffd36caa2ce5",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "100663:a07fe9e6-4ac6-4f2f-9c0f-57aad739538b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "195839:00d9766d-f95a-4aec-b46a-766ec2c73ace",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "160417:2afc12c7-29ec-4e03-acb8-430743b6228f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "118874:90b14385-d835-4391-ad74-e0f3c7f6e715",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "305:55b7f909-62ce-4c3b-ab8b-8cf8f3700bde",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "123364:92be5cd5-7955-4fdf-8f0f-f364780855dc",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "88875:22eaa833-a8e2-45d8-8d52-15c19b86d8cb",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "107725:f72e8ae6-8310-46dc-88fb-efdb01a30a41",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "181881:6be15669-f3a4-40ab-b43f-aadb27e3fc80",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "196155:b8b4aa6e-bd98-4b60-8b59-4bc18972477b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "195073:e68dbe38-9821-4218-8b13-08a0bbbad30d",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "53662:b3c9118d-4c7d-4368-850f-d7a602c553dd",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "143951:5caaab0a-615e-4f8e-96a7-b8102fd9b623",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "173734:bc9e07ef-afbf-4c3b-85fc-48aff51d405f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "204974:f31da86e-716d-42e5-baa7-c3a55dd3d8d8",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "35720:d4cfe5a3-5d4c-4c59-84c6-602586c4d33f",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "23118:69d96974-6967-4add-8899-b4d0fc6e4480",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "79984:8f62b8ee-a5fc-4ca2-8721-c60e51474516",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "179832:2468d4eb-df2b-44cf-81df-5d70f8507dfd",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "148516:2520eec6-5f90-4a58-bf60-02c1b63d8477",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "95679:a9503dd9-7376-47fc-b7ab-307f16cde860",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "170005:38b62393-626f-4d57-81cf-6061f6c006c6",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "213428:3df18331-ed8c-4a4e-b507-91f9a825c58c",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "21547:36bc76d4-9983-4f9e-a8fe-daaf80a6217d",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "11538:42b3be1a-205a-410b-8500-1716149e8e19",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "188638:d2efdc2a-b02f-4b59-8900-ffdc87400d8b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "154633:559a5b99-21a0-4bdc-bf63-df49b20d0e57",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "193548:9c52c50e-c799-4183-bd38-3c88ed9637c6",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "89034:89e78db6-e512-4f2c-9967-53aaa2fdada9",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "48147:b352d64a-0d40-4f99-bf67-392aafc2a43d",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "89027:cfc2a2ca-f415-4f52-bf94-4d35fe87e4e3",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "15227:a7aa3e29-48a2-4098-969e-fc823b5de852",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "143041:5b8b78af-4bd9-4219-a051-4a6441020bde",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "224376:fd2c6aac-7b15-4a33-b584-96c223147160",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "38500:1749555d-b9b0-40f2-8164-30866f1ae6e6",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "116026:2f8ea152-876a-420a-9206-8bc078777675",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "95082:979c650b-0c0e-4c21-92b0-732be2243a55",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "140461:a6e6ae48-dfec-40ad-b02e-1fa943ad0aae",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "46911:71a1c381-278e-49d3-8371-e2bc09fcbd13",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "126172:4f956988-297d-4141-b183-8e6ae3ff72df",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "182442:24788f64-6bab-4748-8c83-bb26020dbc7e",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "180709:84225de3-df14-4d40-8390-1e2b4164796b",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "4824:997603b6-986e-4819-aae0-87b6d631e67c",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "94055:5a2a6e79-a325-4bb2-99ed-f4c3f8854c04",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "22616:45973b9c-8060-4eda-8f0f-6f4258b7eaa0",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "225798:3e20799f-dbed-4fd7-8d09-6c4332bc64eb",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "151118:32b6d7b2-7aa3-4654-9924-b4d110af44d5",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "155198:ceca9f8f-c13e-43fb-b953-dbec33333226",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "106802:616737ee-97f2-4b2d-8b6c-5a857cc95bf5",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "61922:55353741-2522-4811-b2d0-0af8fa82020b",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "37537:84024732-d9ff-4937-9179-e5620893d54e",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "96135:8911ac50-9c76-4901-9de3-2548908614ee",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "21085:e2a127ab-1040-4d22-ac4f-5cd177488c0c",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "194260:11eb7b1c-516e-4a2e-a8bd-b7bff90df8d3",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "24779:b5142cdf-ae5e-4f0c-a422-14000da20da2",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "218238:16d12e7d-7cbd-41d5-985d-91927bac1ec1",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "60515:83eb85ae-43a7-4efe-97f6-d8c3fc234f30",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "122290:f0ca7907-af37-45d4-8f77-b7a73d204fa9",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "23427:3af33a7f-a1ed-464c-b214-40accd8070c7",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "45438:3369b509-f797-4774-b166-a32845381b8b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "197355:a77abbfd-1c48-441c-8411-6b991a477f05",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "199757:5974fa6d-be90-49db-8642-8e726d71e35d",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "179735:019168a2-f689-4fa5-ab24-9770b8cda6f7",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "78244:35857484-ffd9-4e67-9630-e3acc8b906ee",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "26636:e807a1e4-a9a8-4774-921f-c07c49f6dc38",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "149063:e43fed59-c806-4012-b019-ef8f1d27293c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "7436:7266508a-5b25-4eb9-a781-8365908c0569",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "137376:d7a0f264-9ea4-4d0b-9e34-e8bca93de307",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "193402:ed3b05d2-2eaa-421c-9e2c-ab23bc05d0b2",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "141925:0edcc372-3bee-4354-91d4-6530265533b3",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "83431:d79d8537-9e45-4c11-ae38-4833806abcfa",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "103816:3edd1b5c-de76-4f58-9978-f66ef785517e",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "185400:79c534eb-c6b6-4d4d-85da-90e16dd9a53f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "88385:a91b41b4-0b23-4367-aba2-d77347ad0bc8",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "71815:5a909514-fad1-47e7-9901-ee1d7def8c31",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "55924:991c3c81-860f-4438-b70f-c323495af726",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "48903:00adee27-448d-4816-9ced-16019f5eab7c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "178225:bb8dc512-6e5a-4e14-b471-33510e1868b2",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "63829:e45d2527-ba7f-4e27-80a3-725bbc4914cf",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "130849:d0174749-15f7-48f9-b8f4-b2816cddba6f",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "102751:89d92120-068d-4ee3-af00-8ba9906deb6f",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "55741:c40c01aa-264a-4d45-9f08-4f1bf236e16e",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "103439:191d98cb-0540-4a9d-8195-061bd58bc2ed",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "47222:d3b2666a-1a44-4978-a4fb-7c63d6550dae",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "97002:298dad99-7d25-4925-a3f1-60b78f7d4189",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "94603:fc0e8dbc-c845-4ad8-8573-c5febe4604d1",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "11823:c2a60136-f495-446b-86ca-dbd60e9e312d",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "47202:87c9030c-25b1-4f6f-92c6-627370879918",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "162044:1e852702-f6a9-4e4f-8236-83ba807646e9",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "139090:f79572e6-15de-467c-8f97-b5df6fac90e7",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "62492:03d50cea-4f0e-40b4-9a6c-80421ef40cf2",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "59410:2fe39240-d8cb-48a1-bf3f-d19fd1f3631f",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "219674:d740035d-ff4f-49b2-a31f-9b21562581ee",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "89254:cb28ad7f-4899-4ab2-be7c-2520dd697b33",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        }
+      ],
+      "shared_base_and_adapters_load_seconds": 37.058123424998485
+    },
+    "experiment2": {
+      "adapter": "ml/training/outputs/experiment2-qwen2.5-1.5b-qlora",
+      "runtime_seconds": 62.08093676400313,
+      "latency": {
+        "runs": 180,
+        "mean_ms": 343.63511962209384,
+        "p50_ms": 393.6399030008033,
+        "p95_ms": 456.3782419972995
+      },
+      "peak_vram_bytes": 1258661888,
+      "generation": {
+        "do_sample": false,
+        "num_beams": 1,
+        "max_new_tokens": 12
+      },
+      "output_validity": {
+        "valid_exact_label_rate": 1.0,
+        "invalid_output_rate": 0.0,
+        "invalid_outputs": 0,
+        "invalid_fallback": "INSUFFICIENT_EVIDENCE"
+      },
+      "metrics": {
+        "samples": 180,
+        "accuracy": 0.5611111111111111,
+        "macro_precision": 0.5941657094911085,
+        "macro_recall": 0.5611111111111111,
+        "macro_f1": 0.5514735732432362,
+        "labels": [
+          "SUPPORTED",
+          "CONTRADICTED",
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "confusion_matrix": [
+          [
+            44,
+            4,
+            12
+          ],
+          [
+            6,
+            20,
+            34
+          ],
+          [
+            18,
+            5,
+            37
+          ]
+        ],
+        "per_class": {
+          "SUPPORTED": {
+            "precision": 0.6470588235294118,
+            "recall": 0.7333333333333333,
+            "f1": 0.6875,
+            "support": 60
+          },
+          "CONTRADICTED": {
+            "precision": 0.6896551724137931,
+            "recall": 0.3333333333333333,
+            "f1": 0.449438202247191,
+            "support": 60
+          },
+          "INSUFFICIENT_EVIDENCE": {
+            "precision": 0.4457831325301205,
+            "recall": 0.6166666666666667,
+            "f1": 0.5174825174825175,
+            "support": 60
+          }
+        }
+      },
+      "predictions": [
+        {
+          "source_id": "53793:e23112df-9a0d-4fc9-9153-bcd67cc34f65",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "70125:98d21eb0-f3e0-4d68-8cf5-e3e92ccd7759",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "170937:52a63fff-1f6a-47da-9b85-0d841a9c390e",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "141896:63a5e11b-22a7-470e-a495-1d3b133a0b67",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "195843:6c674dc8-ee31-4dd9-b7b0-212e81661644",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "1830:827df733-1994-451e-9c17-2cc2196096cd",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "32401:436ef3ed-aab0-4287-9f0d-d49a144f49b1",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "62118:8d84cd8d-d9e3-4aaf-a14d-15e460ab07a2",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "17859:a25cdec1-0114-4ffd-b05d-f0c6dcfaf93c",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "203034:e12f72b7-4f4d-4c4f-9f05-3bea44915390",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "47296:7bf1b360-32cd-4099-b56f-4546511c00ee",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "1602:10f94530-cf16-43aa-a0a6-4d9743927b8f",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "171534:75903763-8e6b-4c6c-8573-4dad7210ca43",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "110490:af88724d-f455-4344-a0e1-3fadd8506c0f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "216389:2f2da171-53b7-4d46-b933-1c4c0497b6ef",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "205089:9d20efeb-4950-488a-b0d6-5e5650bfcaae",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "202794:94d3c776-a322-41c5-a9f9-dd5987689d52",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "43526:f5e5b83c-5c82-4eb5-bba4-57bbaa82ebf3",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "229304:c800a4b0-07b2-42f5-be78-a3f51dbbd03d",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "130301:1ef75ea9-3847-4b57-8533-802b85de5a02",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "12738:7b098a4e-447e-4aed-b51c-60812b20c975",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "46795:e8ca301b-8049-424d-902c-30d49d9ccb8a",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "126100:40c62b0a-4571-4bb6-a204-e6cc387a9423",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "54690:e345ab9f-4fa6-4b49-a4c1-5da085cad416",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "67212:5dff6bc4-fd1e-483a-a338-7975d9f800c6",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "2862:ce4a92fe-437e-4576-ba29-dc3c57c66893",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "111958:974bf14f-2f5f-462c-9c7d-52b6cae44396",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "69655:20422979-43d0-4ee7-878d-e1c1c8b784af",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "196171:bcc6dbb0-1d56-4dce-85a5-0c6a4617295b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "49738:a84c8939-cef3-4af2-80e3-83aaabac8d67",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "111993:2ee18fd3-fe4a-4b3e-b39e-5d2631555fc9",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "70612:fb8121c6-793b-4a5c-abab-94a7c3a6962e",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "66580:9020fb8b-1565-4522-9a04-3163c897e5c0",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "141716:5d59696e-9c5a-4697-b335-09d68c1ea031",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "64842:8bb920a2-f0e8-425e-aa96-dfc637396b1c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "67950:4fd36ed6-d003-4110-bb5f-65a86aec5cc5",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "27301:51d644c9-ff08-44e2-b6a3-3fa72c9775cf",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "46333:8015d711-e537-4edc-b5b4-baf44c5dd94c",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "50819:891bfab5-e60c-4bf5-862c-64d55c3c0470",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "181992:118e622b-97da-4aa3-aae8-0c40e40cf286",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "27002:05a6003b-9eb3-4598-ae9c-c9798f60b3f7",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "29552:cb81a0b1-8c15-4c9a-bfae-b44cab8ba512",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "196992:cdafd816-edd9-44d0-b93e-1f371a3b8a6a",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "1370:1f6d6582-2eb4-4b17-8367-c23d72358802",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "60952:20048ff9-f51e-4897-bd61-d1f2186c23ae",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "24:fc7849c1-2334-49ad-a6e1-d602ca9b677e",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "96344:2ec08ae2-883b-4a22-975b-8947854c289f",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "215137:5485b61b-e605-43fb-8b62-2bfacad56846",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "127408:ebee86ce-eeca-4376-87d8-735fb5384aae",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "219299:e27b7b5b-4bbf-4fa0-b833-478434b2af8b",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "218107:ea2c9944-59c7-46a5-8dfb-934156651dd1",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "118736:cf5afbf0-45bb-494d-b5c2-aa6835aa6f9d",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "106132:fd516c5f-b4c0-4ce0-b6f2-4da8a51d8f77",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "228578:b805a01a-8ee6-49c4-a63e-3735498f16ee",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "174870:5c2956fb-c4b8-4af0-8e51-de03a410799c",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "163990:fdcd4589-87d3-4f53-8979-088b92e86a23",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "226838:0f67845a-7629-404d-955f-19ebf583f117",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "152492:2af2bcfd-1e15-479f-93e4-0974078e4aa1",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "53534:0cb37274-4078-4e55-a548-763133eb4b4b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "54348:8fe7a229-eea1-46b9-b96d-6da7441d4949",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "125105:1f0395d0-f93b-4072-84b0-e071595f9b23",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "27754:c26bfb99-875a-423d-8e33-cea080690890",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "128676:03a17e77-19fe-4a7c-8696-d95925119e57",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "186936:2660d2ba-7c65-4295-b275-68147dd6a19d",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "128454:d634a9fb-6ec5-487f-a7e6-8b99bbd7c1d4",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "75749:76ad6ce9-7b02-485f-b7c7-bcb5b9f57f19",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "137334:46c17d52-bbbb-4922-ad59-2aedfa55a35e",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "53470:001de03f-a392-41c9-ad69-febf125ec814",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "166840:e62b00cf-df8a-453f-814b-ff5e8e1669bf",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "137644:3a24d5bd-ffa6-4941-9d43-9820aa496309",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "73213:bed8bb59-ce4f-429d-a868-93a9a4235955",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "15621:56f166df-1793-4cf8-91bb-741337f5eca8",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "61892:f6addd15-6c7a-4f10-bc29-d767b037eb26",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "173727:2d2f68f8-1cff-4677-a4e0-f04a46e3bdd6",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "83470:801f275f-558b-4b44-be36-d15d74a6e17a",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "116159:1315393f-7eb0-4e39-9957-a4c1111b41c5",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "98264:4a2dc3f6-a9f5-408d-8493-063b50b8d469",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "200291:6f804dd3-44a7-47b8-bb95-8a674a9cc803",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "197340:28c27606-23f4-4fa3-949a-92c60d47b61a",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "95480:4e122a17-5c44-4938-a3db-a35858ef65b4",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "220205:20d1d140-d401-4ef2-ad49-cd978db23c5c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "205074:ae4e5e40-8378-44b2-97bb-3d425255d934",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "192825:b14d472c-9ff9-4670-a425-19e4986ce460",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "152356:01806e1a-ce85-425d-a9e1-8fada5ad8d15",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "47885:2ad64be0-6762-424d-a7b5-d44310e0562e",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "70833:69c08e3a-9700-4bc7-addf-ffd36caa2ce5",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "100663:a07fe9e6-4ac6-4f2f-9c0f-57aad739538b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "195839:00d9766d-f95a-4aec-b46a-766ec2c73ace",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "160417:2afc12c7-29ec-4e03-acb8-430743b6228f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "118874:90b14385-d835-4391-ad74-e0f3c7f6e715",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "305:55b7f909-62ce-4c3b-ab8b-8cf8f3700bde",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "123364:92be5cd5-7955-4fdf-8f0f-f364780855dc",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "88875:22eaa833-a8e2-45d8-8d52-15c19b86d8cb",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "107725:f72e8ae6-8310-46dc-88fb-efdb01a30a41",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "181881:6be15669-f3a4-40ab-b43f-aadb27e3fc80",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "196155:b8b4aa6e-bd98-4b60-8b59-4bc18972477b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "195073:e68dbe38-9821-4218-8b13-08a0bbbad30d",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "53662:b3c9118d-4c7d-4368-850f-d7a602c553dd",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "143951:5caaab0a-615e-4f8e-96a7-b8102fd9b623",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "173734:bc9e07ef-afbf-4c3b-85fc-48aff51d405f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "204974:f31da86e-716d-42e5-baa7-c3a55dd3d8d8",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "35720:d4cfe5a3-5d4c-4c59-84c6-602586c4d33f",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "23118:69d96974-6967-4add-8899-b4d0fc6e4480",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "79984:8f62b8ee-a5fc-4ca2-8721-c60e51474516",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "179832:2468d4eb-df2b-44cf-81df-5d70f8507dfd",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "148516:2520eec6-5f90-4a58-bf60-02c1b63d8477",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "95679:a9503dd9-7376-47fc-b7ab-307f16cde860",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "170005:38b62393-626f-4d57-81cf-6061f6c006c6",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "213428:3df18331-ed8c-4a4e-b507-91f9a825c58c",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "21547:36bc76d4-9983-4f9e-a8fe-daaf80a6217d",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "11538:42b3be1a-205a-410b-8500-1716149e8e19",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "188638:d2efdc2a-b02f-4b59-8900-ffdc87400d8b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "154633:559a5b99-21a0-4bdc-bf63-df49b20d0e57",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "193548:9c52c50e-c799-4183-bd38-3c88ed9637c6",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "89034:89e78db6-e512-4f2c-9967-53aaa2fdada9",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "48147:b352d64a-0d40-4f99-bf67-392aafc2a43d",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "89027:cfc2a2ca-f415-4f52-bf94-4d35fe87e4e3",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "15227:a7aa3e29-48a2-4098-969e-fc823b5de852",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "143041:5b8b78af-4bd9-4219-a051-4a6441020bde",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "224376:fd2c6aac-7b15-4a33-b584-96c223147160",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "38500:1749555d-b9b0-40f2-8164-30866f1ae6e6",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "116026:2f8ea152-876a-420a-9206-8bc078777675",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "95082:979c650b-0c0e-4c21-92b0-732be2243a55",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "140461:a6e6ae48-dfec-40ad-b02e-1fa943ad0aae",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "46911:71a1c381-278e-49d3-8371-e2bc09fcbd13",
+          "gold": "SUPPORTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "126172:4f956988-297d-4141-b183-8e6ae3ff72df",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "182442:24788f64-6bab-4748-8c83-bb26020dbc7e",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "180709:84225de3-df14-4d40-8390-1e2b4164796b",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "4824:997603b6-986e-4819-aae0-87b6d631e67c",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "94055:5a2a6e79-a325-4bb2-99ed-f4c3f8854c04",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "22616:45973b9c-8060-4eda-8f0f-6f4258b7eaa0",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "225798:3e20799f-dbed-4fd7-8d09-6c4332bc64eb",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "151118:32b6d7b2-7aa3-4654-9924-b4d110af44d5",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "155198:ceca9f8f-c13e-43fb-b953-dbec33333226",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "106802:616737ee-97f2-4b2d-8b6c-5a857cc95bf5",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "61922:55353741-2522-4811-b2d0-0af8fa82020b",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "37537:84024732-d9ff-4937-9179-e5620893d54e",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "96135:8911ac50-9c76-4901-9de3-2548908614ee",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "21085:e2a127ab-1040-4d22-ac4f-5cd177488c0c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "194260:11eb7b1c-516e-4a2e-a8bd-b7bff90df8d3",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "24779:b5142cdf-ae5e-4f0c-a422-14000da20da2",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "218238:16d12e7d-7cbd-41d5-985d-91927bac1ec1",
+          "gold": "SUPPORTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "60515:83eb85ae-43a7-4efe-97f6-d8c3fc234f30",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "122290:f0ca7907-af37-45d4-8f77-b7a73d204fa9",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "23427:3af33a7f-a1ed-464c-b214-40accd8070c7",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "45438:3369b509-f797-4774-b166-a32845381b8b",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "197355:a77abbfd-1c48-441c-8411-6b991a477f05",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "199757:5974fa6d-be90-49db-8642-8e726d71e35d",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "179735:019168a2-f689-4fa5-ab24-9770b8cda6f7",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "78244:35857484-ffd9-4e67-9630-e3acc8b906ee",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "26636:e807a1e4-a9a8-4774-921f-c07c49f6dc38",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "149063:e43fed59-c806-4012-b019-ef8f1d27293c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "7436:7266508a-5b25-4eb9-a781-8365908c0569",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "137376:d7a0f264-9ea4-4d0b-9e34-e8bca93de307",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "193402:ed3b05d2-2eaa-421c-9e2c-ab23bc05d0b2",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "141925:0edcc372-3bee-4354-91d4-6530265533b3",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "83431:d79d8537-9e45-4c11-ae38-4833806abcfa",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "103816:3edd1b5c-de76-4f58-9978-f66ef785517e",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "185400:79c534eb-c6b6-4d4d-85da-90e16dd9a53f",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "88385:a91b41b4-0b23-4367-aba2-d77347ad0bc8",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "71815:5a909514-fad1-47e7-9901-ee1d7def8c31",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "55924:991c3c81-860f-4438-b70f-c323495af726",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "48903:00adee27-448d-4816-9ced-16019f5eab7c",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "178225:bb8dc512-6e5a-4e14-b471-33510e1868b2",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "63829:e45d2527-ba7f-4e27-80a3-725bbc4914cf",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "130849:d0174749-15f7-48f9-b8f4-b2816cddba6f",
+          "gold": "CONTRADICTED",
+          "prediction": "CONTRADICTED",
+          "raw_output": "CONTRADICTED"
+        },
+        {
+          "source_id": "102751:89d92120-068d-4ee3-af00-8ba9906deb6f",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "55741:c40c01aa-264a-4d45-9f08-4f1bf236e16e",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "103439:191d98cb-0540-4a9d-8195-061bd58bc2ed",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "47222:d3b2666a-1a44-4978-a4fb-7c63d6550dae",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "97002:298dad99-7d25-4925-a3f1-60b78f7d4189",
+          "gold": "INSUFFICIENT_EVIDENCE",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "94603:fc0e8dbc-c845-4ad8-8573-c5febe4604d1",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "11823:c2a60136-f495-446b-86ca-dbd60e9e312d",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "47202:87c9030c-25b1-4f6f-92c6-627370879918",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "162044:1e852702-f6a9-4e4f-8236-83ba807646e9",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "139090:f79572e6-15de-467c-8f97-b5df6fac90e7",
+          "gold": "CONTRADICTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "62492:03d50cea-4f0e-40b4-9a6c-80421ef40cf2",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "59410:2fe39240-d8cb-48a1-bf3f-d19fd1f3631f",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "219674:d740035d-ff4f-49b2-a31f-9b21562581ee",
+          "gold": "SUPPORTED",
+          "prediction": "SUPPORTED",
+          "raw_output": "SUPPORTED"
+        },
+        {
+          "source_id": "89254:cb28ad7f-4899-4ab2-be7c-2520dd697b33",
+          "gold": "CONTRADICTED",
+          "prediction": "INSUFFICIENT_EVIDENCE",
+          "raw_output": "INSUFFICIENT_EVIDENCE"
+        }
+      ],
+      "shared_base_and_adapters_load_seconds": 37.058123424998485
+    }
+  },
+  "deltas": {
+    "experiment1_minus_baseline": {
+      "accuracy": -0.08333333333333326,
+      "macro_precision": -0.07787021597480748,
+      "macro_recall": -0.08333333333333348,
+      "macro_f1": -0.06660643593203086
+    },
+    "experiment2_minus_baseline": {
+      "accuracy": -0.1333333333333333,
+      "macro_precision": -0.10140024416308058,
+      "macro_recall": -0.13333333333333341,
+      "macro_f1": -0.12434540683106299
+    },
+    "experiment2_minus_experiment1": {
+      "accuracy": -0.050000000000000044,
+      "macro_precision": -0.0235300281882731,
+      "macro_recall": -0.04999999999999993,
+      "macro_f1": -0.05773897089903213
+    }
+  }
+}

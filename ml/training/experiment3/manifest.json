@@ -1,0 +1,64 @@
+{
+  "experiment": "experiment3_multi_evidence_contradiction_boundary",
+  "status": "prepared",
+  "seed": 113,
+  "source_hashes": {
+    "primary_train": "70d15170abb1870b3d4143cea11284ab3ced6159515663d794938e10a7098c60",
+    "primary_validation": "69a15ada4db9131aef8884b97206fcfffd7058340d551b7a79fcbe6bb0445c31",
+    "held_out_test": "390ca93b325f60a910c1c4a973901915574c570011690c3a7301a708458db94c",
+    "replacement_pool": "ce892524a9c2d30b261ec9b4dbca8fc1e7c7093e9af3b1d2c68fdd68b17872ee"
+  },
+  "replacement": {
+    "excluded_source_id": "160785:a463fee3-d463-4b10-a461-9f16d1c20cbb",
+    "replacement_source_id": "130096:8b4afc54-21ec-4bc0-97a2-9ef07024e6c4",
+    "replacement_claim_group_id": "130096"
+  },
+  "audit": {
+    "splits": {
+      "train": {
+        "rows": 1200,
+        "class_counts": {
+          "CONTRADICTED": 400,
+          "SUPPORTED": 400,
+          "INSUFFICIENT_EVIDENCE": 400
+        }
+      },
+      "validation": {
+        "rows": 180,
+        "class_counts": {
+          "SUPPORTED": 60,
+          "INSUFFICIENT_EVIDENCE": 60,
+          "CONTRADICTED": 60
+        }
+      },
+      "test": {
+        "rows": 180,
+        "class_counts": {
+          "SUPPORTED": 60,
+          "INSUFFICIENT_EVIDENCE": 60,
+          "CONTRADICTED": 60
+        }
+      }
+    },
+    "exact_duplicate_counts": {
+      "train": 0,
+      "validation": 0,
+      "test": 0
+    },
+    "near_duplicate_pairs": {
+      "train": [],
+      "validation": [],
+      "test": []
+    },
+    "leakage_checks": {
+      "train_validation_source_overlap": 0,
+      "train_test_source_overlap": 0,
+      "validation_test_source_overlap": 0,
+      "train_validation_claim_group_overlap": 0,
+      "train_test_claim_group_overlap": 0,
+      "validation_test_claim_group_overlap": 0
+    }
+  },
+  "conflict_challenge_records": 50,
+  "held_out_test_policy": "Frozen source rows are formatted with exactly one evidence passage; they are not used during preparation, training, validation, checkpoint selection, or early stopping."
+}

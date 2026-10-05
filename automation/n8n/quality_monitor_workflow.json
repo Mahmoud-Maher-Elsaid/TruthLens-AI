@@ -1,0 +1,22 @@
+{
+  "name": "TruthLens Quality and Regression Monitor",
+  "active": false,
+  "settings": {"executionOrder": "v1"},
+  "nodes": [
+    {"parameters": {"rule": {"interval": [{"field": "minutes", "minutesInterval": 15}]}}, "id": "schedule-monitor", "name": "Run every 15 minutes", "type": "n8n-nodes-base.scheduleTrigger", "typeVersion": 1.2, "position": [0, 0]},
+    {"parameters": {"method": "GET", "url": "={{$env.TRUTHLENS_API_BASE_URL + '/api/v1/health'}}", "options": {"timeout": 10000}}, "retryOnFail": true, "maxTries": 2, "waitBetweenTries": 1000, "onError": "continueRegularOutput", "id": "health-request", "name": "Read TruthLens health", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [240, 0]},
+    {"parameters": {"method": "GET", "url": "={{$env.TRUTHLENS_API_BASE_URL + '/api/v1/benchmarks'}}", "options": {"timeout": 10000}}, "retryOnFail": true, "maxTries": 2, "waitBetweenTries": 1000, "onError": "continueRegularOutput", "id": "benchmark-request", "name": "Read measured benchmarks", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [480, 0]},
+    {"parameters": {"jsCode": "const health = $('Read TruthLens health').first().json || {};\nconst benchmark = $json || {};\nconst alerts = [];\nif (health.error || !health.status) alerts.push('BACKEND_UNAVAILABLE_OR_MALFORMED');\nelse if (health.status !== 'ok') alerts.push('BACKEND_DEGRADED');\nif (health.model_readiness && /fallback|degraded|unavailable/i.test(health.model_readiness)) alerts.push('MODEL_READINESS_DEGRADED');\nif (health.vector_store_readiness && /empty|fallback|degraded|unavailable/i.test(health.vector_store_readiness)) alerts.push('VECTOR_STORE_DEGRADED');\nif (benchmark.error || !Array.isArray(benchmark.artifacts)) alerts.push('BENCHMARK_RESPONSE_MALFORMED');\nconst artifacts = Array.isArray(benchmark.artifacts) ? benchmark.artifacts : [];\nconst names = new Set(artifacts.map(item => item.name));\nfor (const required of ['baseline_verifier.json', 'experiment2_verifier_comparison.json', 'rag_validation.json']) if (!names.has(required)) alerts.push(`MISSING_ARTIFACT:${required}`);\nconst current = artifacts.find(item => item.name === 'experiment2_verifier_comparison.json');\nconst currentData = current?.data || {};\nconst baseline = currentData.models?.baseline?.metrics || currentData.baseline?.metrics || currentData.baseline || {};\nconst observedBaselineMacroF1 = baseline.macro_f1 === undefined ? null : Number(baseline.macro_f1);\nconst defaultReferenceBaselineMacroF1 = 0.6758189800742992;\nconst configuredReference = Number($env.TRUTHLENS_MIN_BASELINE_MACRO_F1);\nconst referenceBaselineMacroF1 = Number.isFinite(configuredReference) ? configuredReference : defaultReferenceBaselineMacroF1;\nconst comparisonEpsilon = 1e-9;\nconst macroF1Regression = Number.isFinite(observedBaselineMacroF1) && observedBaselineMacroF1 < referenceBaselineMacroF1 - comparisonEpsilon;\nif (macroF1Regression) alerts.push('QUALITY_REGRESSION_MACRO_F1');\nreturn [{json: {ok: alerts.length === 0, checked_at: new Date().toISOString(), alerts: [...new Set(alerts)], health, benchmark_status: benchmark.status || 'unavailable', available_artifacts: artifacts.map(item => item.name), observed_baseline_macro_f1: observedBaselineMacroF1, reference_baseline_macro_f1: referenceBaselineMacroF1, comparison_epsilon: comparisonEpsilon, macro_f1_regression: macroF1Regression, latency_signal: null, provider_signal: health.model_readiness || null, limitations: ['Latency regression is unavailable unless a comparable artifact is exposed.', 'This workflow does not invent live quality or latency metrics.']}}];"}, "id": "inspect-signals", "name": "Inspect operational signals", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [740, 0]},
+    {"parameters": {"jsCode": "return [{json: $json}];"}, "id": "monitor-output", "name": "Emit quality report", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [1000, 0]}
+  ],
+  "connections": {
+    "Run every 15 minutes": {"main": [[{"node": "Read TruthLens health", "type": "main", "index": 0}]]},
+    "Read TruthLens health": {"main": [[{"node": "Read measured benchmarks", "type": "main", "index": 0}]]},
+    "Read measured benchmarks": {"main": [[{"node": "Inspect operational signals", "type": "main", "index": 0}]]},
+    "Inspect operational signals": {"main": [[{"node": "Emit quality report", "type": "main", "index": 0}]]}
+  },
+  "pinData": {},
+  "versionId": "truthlens-quality-monitor-v1",
+  "meta": {"templateCredsSetupCompleted": true},
+  "tags": []
+}

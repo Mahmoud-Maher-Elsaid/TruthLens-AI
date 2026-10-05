@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "completed_at": "2026-10-01T06:48:07.936458+00:00",
+  "dataset": {
+    "id": "pietrolesci/nli_fever",
+    "split": "held-out subset of dev",
+    "path": "ml/datasets/processed/test.jsonl"
+  },
+  "same_test_samples": true,
+  "finetuned": {
+    "samples": 90,
+    "accuracy": 0.6444444444444445,
+    "macro_precision": 0.6500352360817477,
+    "macro_recall": 0.6444444444444444,
+    "macro_f1": 0.6337133186448255,
+    "labels": [
+      "SUPPORTED",
+      "CONTRADICTED",
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "confusion_matrix": [
+      [
+        20,
+        3,
+        7
+      ],
+      [
+        1,
+        26,
+        3
+      ],
+      [
+        4,
+        14,
+        12
+      ]
+    ],
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.8,
+        "recall": 0.6666666666666666,
+        "f1": 0.7272727272727273,
+        "support": 30
+      },
+      "CONTRADICTED": {
+        "precision": 0.6046511627906976,
+        "recall": 0.8666666666666667,
+        "f1": 0.7123287671232876,
+        "support": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "precision": 0.5454545454545454,
+        "recall": 0.4,
+        "f1": 0.46153846153846156,
+        "support": 30
+      }
+    }
+  },
+  "baseline": {
+    "samples": 90,
+    "accuracy": 0.6666666666666666,
+    "macro_precision": 0.6953067452383458,
+    "macro_recall": 0.6666666666666666,
+    "macro_f1": 0.6437659286396942,
+    "labels": [
+      "SUPPORTED",
+      "CONTRADICTED",
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "confusion_matrix": [
+      [
+        25,
+        4,
+        1
+      ],
+      [
+        3,
+        25,
+        2
+      ],
+      [
+        6,
+        14,
+        10
+      ]
+    ],
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.7352941176470589,
+        "recall": 0.8333333333333334,
+        "f1": 0.78125,
+        "support": 30
+      },
+      "CONTRADICTED": {
+        "precision": 0.5813953488372093,
+        "recall": 0.8333333333333334,
+        "f1": 0.684931506849315,
+        "support": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "precision": 0.7692307692307693,
+        "recall": 0.3333333333333333,
+        "f1": 0.46511627906976744,
+        "support": 30
+      }
+    }
+  },
+  "delta": {
+    "accuracy": -0.022222222222222143,
+    "macro_f1": -0.010052609994868678
+  },
+  "conclusion": "No across-metric improvement is claimed from this run."
+}

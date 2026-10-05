@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "started_at": "2026-09-30T22:58:12.093402+00:00",
+  "environment": {
+    "captured_at": "2026-09-30T22:58:32.262710+00:00",
+    "platform": "Linux-6.18.33.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "pytorch": "2.8.0+cu128",
+    "cuda": {
+      "available": true,
+      "torch_cuda_version": "12.8",
+      "device_count": 1,
+      "model": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+      "vram_bytes": 8589410304,
+      "vram_mib": 8192,
+      "compute_capability": "8.6",
+      "bf16_supported": true,
+      "tensor_probe": {
+        "operation": "dot([1,2], [3,4])",
+        "result": 11.0
+      },
+      "driver_version": "592.82"
+    }
+  },
+  "models": {
+    "embedding": {
+      "status": "passed",
+      "requested_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "resolved_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "private": false,
+      "gated": false,
+      "library": "sentence-transformers",
+      "pipeline_tag": "sentence-similarity",
+      "license": "apache-2.0",
+      "usage_assessment": "Apache-2.0 is a permissive license suitable for this research/demo use; downstream users remain responsible for data and deployment obligations.",
+      "tokenizer_loaded": true,
+      "model_loaded": true,
+      "load_seconds": 56.11205451800015,
+      "inference_seconds": 0.5620263790005993,
+      "inference": {
+        "shape": [
+          2,
+          384
+        ],
+        "finite": true,
+        "cosine_similarity": 0.5719016790390015
+      }
+    },
+    "reranker": {
+      "status": "passed",
+      "requested_id": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "resolved_id": "cross-encoder/ms-marco-MiniLM-L6-v2",
+      "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+      "private": false,
+      "gated": false,
+      "library": "sentence-transformers",
+      "pipeline_tag": "text-ranking",
+      "license": "apache-2.0",
+      "usage_assessment": "Apache-2.0 is a permissive license suitable for this research/demo use; downstream users remain responsible for data and deployment obligations.",
+      "tokenizer_loaded": true,
+      "model_loaded": true,
+      "load_seconds": 39.93646488500053,
+      "inference_seconds": 0.025970513000174833,
+      "inference": {
+        "shape": [
+          2
+        ],
+        "finite": true,
+        "scores": [
+          10.39143180847168,
+          -11.01878833770752
+        ],
+        "id2label": {
+          "0": "LABEL_0"
+        }
+      }
+    },
+    "baseline_verifier": {
+      "status": "passed",
+      "requested_id": "cross-encoder/nli-deberta-v3-small",
+      "resolved_id": "cross-encoder/nli-deberta-v3-small",
+      "revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "private": false,
+      "gated": false,
+      "library": "sentence-transformers",
+      "pipeline_tag": "zero-shot-classification",
+      "license": "apache-2.0",
+      "usage_assessment": "Apache-2.0 is a permissive license suitable for this research/demo use; downstream users remain responsible for data and deployment obligations.",
+      "tokenizer_loaded": true,
+      "model_loaded": true,
+      "load_seconds": 192.44019389000096,
+      "inference_seconds": 0.8376794830001018,
+      "inference": {
+        "shape": [
+          2,
+          3
+        ],
+        "finite": true,
+        "scores": [
+          [
+            -4.174953460693359,
+            4.513974189758301,
+            -0.5202800035476685
+          ],
+          [
+            5.6833062171936035,
+            -3.815627098083496,
+            -1.8735177516937256
+          ]
+        ],
+        "id2label": {
+          "0": "contradiction",
+          "1": "entailment",
+          "2": "neutral"
+        }
+      }
+    },
+    "finetuning_base": {
+      "status": "passed",
+      "requested_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "resolved_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "private": false,
+      "gated": false,
+      "library": "transformers",
+      "pipeline_tag": "text-generation",
+      "license": "apache-2.0",
+      "usage_assessment": "Apache-2.0 is a permissive license suitable for this research/demo use; downstream users remain responsible for data and deployment obligations.",
+      "tokenizer_loaded": true,
+      "model_loaded": true,
+      "tokenizer_load_seconds": 4.376808377999623,
+      "load_seconds": 841.1250290389999,
+      "load_precision": "4-bit NF4",
+      "inference_seconds": 1.0824444769987167,
+      "inference": {
+        "generated_text": " To determine whether the claim \"Paris is",
+        "parsed_label": null
+      }
+    }
+  },
+  "resumed_at": "2026-10-01T06:01:45.200104+00:00",
+  "completed_at": "2026-10-01T06:22:47.796821+00:00"
+}

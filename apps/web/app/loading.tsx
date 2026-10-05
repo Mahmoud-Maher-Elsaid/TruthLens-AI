@@ -1,0 +1,1 @@
+export default function Loading() { return <main id="main" className="shell page-loading" aria-label="Loading"><div className="skeleton wide"/><div className="skeleton"/><div className="skeleton cards"/></main>; }

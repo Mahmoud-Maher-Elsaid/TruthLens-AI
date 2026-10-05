@@ -1,0 +1,23 @@
+{
+  "request_id": "demo-request-001",
+  "analysis_id": "available-after-api-response",
+  "timestamp": "2026-10-05T00:00:00Z",
+  "original_input": "The Eiffel Tower was built in 1920.",
+  "escalation_reason": ["CONTRADICTED"],
+  "provider": "configured-provider",
+  "mode": "LOCAL",
+  "fallback_detected": false,
+  "claims": [
+    {
+      "claim_id": "claim-1",
+      "claim_text": "The Eiffel Tower was built in 1920.",
+      "verdict": "CONTRADICTED",
+      "confidence": null,
+      "evidence_strength": "HIGH",
+      "citations": [],
+      "supporting_evidence": [],
+      "contradicting_evidence": [],
+      "corrections": []
+    }
+  ]
+}

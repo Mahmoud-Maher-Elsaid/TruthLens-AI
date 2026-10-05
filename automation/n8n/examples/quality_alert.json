@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "checked_at": "2026-10-05T00:00:00Z",
+  "alerts": ["BACKEND_DEGRADED", "QUALITY_REGRESSION_MACRO_F1"],
+  "available_artifacts": ["baseline_verifier.json", "experiment2_verifier_comparison.json"],
+  "observed_baseline_macro_f1": 0.6758189801,
+  "latency_signal": null,
+  "limitations": ["No live latency signal is invented."]
+}

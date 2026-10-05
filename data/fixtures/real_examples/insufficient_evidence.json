@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "fixture_kind": "real_non_demo_inference",
+  "generated_at": "2026-10-05T14:32:19.993426+00:00",
+  "case": "insufficient_evidence",
+  "input": "The Eiffel Tower was painted blue in 1901.",
+  "expected_verdicts": [
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "actual_verdicts": [
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "expected_match": true,
+  "overall_latency_ms": 52.37930000294,
+  "analysis_latency_ms": 52.34190000919625,
+  "document_ingestion": null,
+  "document_ingestion_latency_ms": null,
+  "stage_timings": {
+    "claim_extraction": {
+      "calls": 1,
+      "total_ms": 0.011599971912801266,
+      "mean_ms": 0.011599971912801266,
+      "max_ms": 0.011599971912801266,
+      "measurements_ms": [
+        0.011599971912801266
+      ]
+    },
+    "claim_normalization": {
+      "calls": 1,
+      "total_ms": 0.006199989002197981,
+      "mean_ms": 0.006199989002197981,
+      "max_ms": 0.006199989002197981,
+      "measurements_ms": [
+        0.006199989002197981
+      ]
+    },
+    "faiss_retrieval": {
+      "calls": 2,
+      "total_ms": 9.411900013219565,
+      "mean_ms": 4.705950006609783,
+      "max_ms": 5.092400009743869,
+      "measurements_ms": [
+        5.092400009743869,
+        4.319500003475696
+      ]
+    },
+    "cross_encoder_reranking": {
+      "calls": 2,
+      "total_ms": 9.224199980963022,
+      "mean_ms": 4.612099990481511,
+      "max_ms": 5.473700002767146,
+      "measurements_ms": [
+        5.473700002767146,
+        3.750499978195876
+      ]
+    },
+    "baseline_verification": {
+      "calls": 2,
+      "total_ms": 33.5209000040777,
+      "mean_ms": 16.76045000203885,
+      "max_ms": 18.15720001468435,
+      "measurements_ms": [
+        18.15720001468435,
+        15.363699989393353
+      ]
+    },
+    "structured_report_serialization": {
+      "calls": 1,
+      "total_ms": 0.019799976143985987,
+      "mean_ms": 0.019799976143985987,
+      "max_ms": 0.019799976143985987,
+      "measurements_ms": [
+        0.019799976143985987
+      ]
+    }
+  },
+  "stage_failures": [],
+  "runtime_branches": {
+    "retrieval_expansion_triggered": true,
+    "retrieval_calls": 2
+  },
+  "fallbacks": {
+    "demo_mode": false,
+    "precomputed_demo": false,
+    "lexical_store": false,
+    "vector_similarity_reranker": false,
+    "finetuned_verifier": false
+  },
+  "retrieval_traces": [
+    {
+      "query": "The Eiffel Tower was painted blue in 1901",
+      "top_k": 4,
+      "results": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889 as the entrance to the 1889 World's Fair. The structure is named after engineer Gustave Eiffel, whose company designed and built it. The tower is 330 metres tall after the installation of its current antenna.",
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          },
+          "retrieval_score": 0.5859290361404419
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "text": "The tower was not built in 1920 and it is not located in Rome. It has become a global cultural icon of France and one of the most recognizable structures in the world.",
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          },
+          "retrieval_score": 0.4247661828994751
+        }
+      ]
+    },
+    {
+      "query": "Evidence about: The Eiffel Tower was painted blue in 1901",
+      "top_k": 4,
+      "results": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889 as the entrance to the 1889 World's Fair. The structure is named after engineer Gustave Eiffel, whose company designed and built it. The tower is 330 metres tall after the installation of its current antenna.",
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          },
+          "retrieval_score": 0.5538283586502075
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "text": "The tower was not built in 1920 and it is not located in Rome. It has become a global cultural icon of France and one of the most recognizable structures in the world.",
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          },
+          "retrieval_score": 0.4384385347366333
+        }
+      ]
+    }
+  ],
+  "reranking_traces": [
+    {
+      "claim": "The Eiffel Tower was painted blue in 1901",
+      "limit": 4,
+      "results": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889 as the entrance to the 1889 World's Fair. The structure is named after engineer Gustave Eiffel, whose company designed and built it. The tower is 330 metres tall after the installation of its current antenna.",
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          },
+          "retrieval_score": 0.5859290361404419,
+          "rerank_score": 1.0515261888504028
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "text": "The tower was not built in 1920 and it is not located in Rome. It has become a global cultural icon of France and one of the most recognizable structures in the world.",
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          },
+          "retrieval_score": 0.4247661828994751,
+          "rerank_score": -4.92820930480957
+        }
+      ]
+    },
+    {
+      "claim": "The Eiffel Tower was painted blue in 1901",
+      "limit": 4,
+      "results": [
+        {
+          "chunk_id": "17bd0e971b1a",
+          "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889 as the entrance to the 1889 World's Fair. The structure is named after engineer Gustave Eiffel, whose company designed and built it. The tower is 330 metres tall after the installation of its current antenna.",
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 0,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "17bd0e971b1a"
+          },
+          "retrieval_score": 0.5538283586502075,
+          "rerank_score": 1.0515261888504028
+        },
+        {
+          "chunk_id": "fd9bfeb2c5bd",
+          "text": "The tower was not built in 1920 and it is not located in Rome. It has become a global cultural icon of France and one of the most recognizable structures in the world.",
+          "metadata": {
+            "document_name": "eiffel_tower.md",
+            "section": "Eiffel Tower reference",
+            "chunk_index": 1,
+            "source_path": "data/demo_kb/eiffel_tower.md",
+            "expected_chunk_id": "fd9bfeb2c5bd"
+          },
+          "retrieval_score": 0.4384385347366333,
+          "rerank_score": -4.92820930480957
+        }
+      ]
+    }
+  ],
+  "retrieved_documents": [
+    "eiffel_tower.md"
+  ],
+  "expected_retrieved_documents": [],
+  "expected_retrieved_documents_present": true,
+  "citations": [
+    {
+      "claim_id": "claim-1",
+      "evidence_id": "evidence-17bd0e971b1a",
+      "document_name": "eiffel_tower.md",
+      "section": "Eiffel Tower reference",
+      "page": null,
+      "chunk_id": "17bd0e971b1a",
+      "retrieval_score": 0.5859290361404419,
+      "rerank_score": 1.0515261888504028
+    },
+    {
+      "claim_id": "claim-1",
+      "evidence_id": "evidence-fd9bfeb2c5bd",
+      "document_name": "eiffel_tower.md",
+      "section": "Eiffel Tower reference",
+      "page": null,
+      "chunk_id": "fd9bfeb2c5bd",
+      "retrieval_score": 0.4247661828994751,
+      "rerank_score": -4.92820930480957
+    }
+  ],
+  "pipeline_checks": {
+    "claim_extraction": true,
+    "normalization": true,
+    "faiss_retrieval": true,
+    "cross_encoder_reranking": true,
+    "baseline_verification": true,
+    "citations": true,
+    "structured_result": true,
+    "non_demo": true,
+    "document_ingestion": true,
+    "conflicting_sources_retrieved": true
+  },
+  "report": {
+    "analysis_id": "3201a49c18694e57",
+    "mode": "LOCAL",
+    "provider": "huggingface-nli:cross-encoder/nli-deberta-v3-small",
+    "is_precomputed_demo": false,
+    "original_text": "The Eiffel Tower was painted blue in 1901.",
+    "summary": {
+      "claims_analyzed": 1,
+      "supported": 0,
+      "contradicted": 0,
+      "insufficient_evidence": 1,
+      "evidence_coverage_score": 0.0,
+      "score_definition": "Share of extracted claims with evidence sufficient to support or contradict them."
+    },
+    "claims": [
+      {
+        "id": "claim-1",
+        "claim": "The Eiffel Tower was painted blue in 1901.",
+        "normalized_claim": "The Eiffel Tower was painted blue in 1901",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "evidence_strength": "MEDIUM",
+        "evidence": [
+          {
+            "id": "evidence-17bd0e971b1a",
+            "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It was constructed from 1887 to 1889 as the entrance to the 1889 World's Fair. The structure is named after engineer Gustave Eiffel, whose company designed and built it. The tower is 330 metres tall after the installation of its current antenna.",
+            "metadata": {
+              "document_name": "eiffel_tower.md",
+              "document_id": null,
+              "source_url": null,
+              "section": "Eiffel Tower reference",
+              "page": null,
+              "chunk_id": "17bd0e971b1a"
+            },
+            "retrieval_score": 0.5859290361404419,
+            "rerank_score": 1.0515261888504028,
+            "relationship": "related"
+          },
+          {
+            "id": "evidence-fd9bfeb2c5bd",
+            "text": "The tower was not built in 1920 and it is not located in Rome. It has become a global cultural icon of France and one of the most recognizable structures in the world.",
+            "metadata": {
+              "document_name": "eiffel_tower.md",
+              "document_id": null,
+              "source_url": null,
+              "section": "Eiffel Tower reference",
+              "page": null,
+              "chunk_id": "fd9bfeb2c5bd"
+            },
+            "retrieval_score": 0.4247661828994751,
+            "rerank_score": -4.92820930480957,
+            "relationship": "related"
+          }
+        ],
+        "explanation": "Multi-passage NLI assessment: eiffel_tower.md: INSUFFICIENT_EVIDENCE, eiffel_tower.md: INSUFFICIENT_EVIDENCE. Evidence strength combines verifier, retrieval, and reranking signals.",
+        "corrected_statement": null,
+        "conflicting_evidence": false
+      }
+    ],
+    "limitations": [
+      "Results are bounded by the indexed evidence and pretrained verifier behavior.",
+      "Evidence strength is categorical and is not a calibrated probability."
+    ]
+  }
+}

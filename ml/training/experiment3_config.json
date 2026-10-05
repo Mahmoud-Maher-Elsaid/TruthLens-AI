@@ -1,0 +1,76 @@
+{
+  "experiment": "experiment3_preimplementation_plan",
+  "status": "superseded",
+  "canonical_config": "ml/training/experiment3/config.json",
+  "hypothesis": "After deterministic multi-evidence aggregation is fixed, a verifier trained on claim-plus-evidence sets with explicit contradiction and insufficient-evidence contrasts may improve separation between CONTRADICTED and INSUFFICIENT_EVIDENCE without increasing unsupported positive verdicts.",
+  "decision_gate": "Do not run until an audited multi-evidence dataset and Experiment 3 trainer exist. The pair-level Experiment 2 split and its held-out test must not be relabeled, threshold-tuned, or used for checkpoint selection.",
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "tokenizer": "Qwen/Qwen2.5-1.5B-Instruct",
+  "data_sources": {
+    "natural_source": "pietrolesci/nli_fever",
+    "natural_source_role": "licensed/public FEVER-NLI projection; source labels remain authoritative only after leakage and semantic-risk checks",
+    "controlled_source": "planned controlled contrast triples derived from documented contradiction/neutral patterns; not yet constructed",
+    "held_out_test": "ml/datasets/processed/experiment2/test.jsonl",
+    "held_out_test_policy": "untouched; never used for prompt, threshold, hyperparameter, or checkpoint decisions"
+  },
+  "input_contract": {
+    "format": "claim plus up to three independently retrieved evidence passages",
+    "passage_metadata": ["document_id", "document_name", "chunk_id", "retrieval_score", "rerank_score"],
+    "required_contrasts": ["explicit negation", "numeric/date mismatch", "related but non-decisive passage", "supporting and contradicting passages together"],
+    "output_labels": ["SUPPORTED", "CONTRADICTED", "INSUFFICIENT_EVIDENCE"]
+  },
+  "planned_splits": {
+    "train_per_label": 400,
+    "validation_per_label": 60,
+    "test_per_label": 60,
+    "observed_class_counts": {
+      "train": {"SUPPORTED": 400, "CONTRADICTED": 400, "INSUFFICIENT_EVIDENCE": 400},
+      "validation": {"SUPPORTED": 60, "CONTRADICTED": 60, "INSUFFICIENT_EVIDENCE": 60},
+      "test": {"SUPPORTED": 60, "CONTRADICTED": 60, "INSUFFICIENT_EVIDENCE": 60}
+    },
+    "manifest": "ml/training/experiment3_manifest.json",
+    "note": "Measured by the deterministic preparation audit. The current rows are pair-level; one train near-duplicate pair at token Jaccard 0.86 must be excluded and deterministically replaced in a future Experiment 3-specific split."
+  },
+  "leakage_controls": {
+    "exact_duplicate_key": ["claim", "evidence_set", "label"],
+    "near_duplicate_audit": "token Jaccard audit within source and claim group; review flagged pairs",
+    "group_key": "claim_group_id",
+    "source_group_separation": true,
+    "controlled_examples_excluded_from_test": true,
+    "hashes_required": ["source_snapshot", "train", "validation", "test", "manifest"]
+  },
+  "near_duplicate_resolution": {
+    "excluded_source_id": "160785:a463fee3-d463-4b10-a461-9f16d1c20cbb",
+    "retained_source_id": "160785:7c095d99-5d1d-418d-8c40-59ef87d7d5f6",
+    "reason": "Same claim group and CONTRADICTED label; the retained row contains the same factual contradiction without the longer row's unrelated retail/cultural sentence.",
+    "replacement_policy": "Deterministically select one non-duplicate CONTRADICTED row from the audited natural training pool after source snapshot hashing; do not alter validation or held-out test data."
+  },
+  "training": {
+    "seed": 113,
+    "quantization": "4-bit NF4 double quantization",
+    "precision": "BF16 when supported, otherwise FP16",
+    "max_length": 1024,
+    "learning_rate": 0.00005,
+    "scheduler": "cosine",
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "max_epochs": 3,
+    "max_grad_norm": 0.3,
+    "eval_steps": 50,
+    "early_stopping_patience": 2,
+    "early_stopping_threshold": 0.002,
+    "best_checkpoint_metric": "validation macro F1 from deterministic label evaluation",
+    "logging": "JSON run metadata plus trainer log; report_to=none",
+    "output_dir": "ml/training/outputs/experiment3-multi-evidence-qwen2.5-1.5b-qlora"
+  },
+  "promotion": {
+    "baseline_accuracy": 0.6944444444,
+    "baseline_macro_f1": 0.6758189801,
+    "required_metrics": ["accuracy", "macro_precision", "macro_recall", "macro_f1", "per_class_f1", "confusion_matrix", "latency", "peak_vram"],
+    "must_protect": ["CONTRADICTED recall", "INSUFFICIENT_EVIDENCE precision", "INSUFFICIENT_EVIDENCE recall"],
+    "rule": "Promote only after the same untouched 180-sample protocol, reproducible metadata, acceptable latency, and no leakage. Macro F1 must exceed 0.6758189801, or be within 0.005 only when both CONTRADICTED recall and INSUFFICIENT_EVIDENCE F1 improve.",
+    "severe_class_collapse": "No per-class F1 may decline by more than 0.03 from the baseline without an offsetting, documented improvement in the CONTRADICTED/INSUFFICIENT_EVIDENCE boundary."
+  }
+}

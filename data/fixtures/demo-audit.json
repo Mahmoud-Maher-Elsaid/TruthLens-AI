@@ -1,0 +1,6 @@
+{
+  "id": "eiffel-audit",
+  "title": "Eiffel Tower mixed-accuracy answer",
+  "input": "The Eiffel Tower is in Paris. It was completed in 1920. It is 330 metres tall. Gustave Eiffel personally invented radio broadcasting from the tower.",
+  "label": "Precomputed demo fixture"
+}

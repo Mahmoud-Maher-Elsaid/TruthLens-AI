@@ -1,0 +1,63 @@
+{
+  "experiment": "experiment3_multi_evidence_contradiction_boundary",
+  "status": "prepared",
+  "splits": {
+    "train": {
+      "rows": 1200,
+      "class_counts": {
+        "SUPPORTED": 400,
+        "INSUFFICIENT_EVIDENCE": 400,
+        "CONTRADICTED": 400
+      },
+      "sha256": "70d15170abb1870b3d4143cea11284ab3ced6159515663d794938e10a7098c60"
+    },
+    "validation": {
+      "rows": 180,
+      "class_counts": {
+        "SUPPORTED": 60,
+        "CONTRADICTED": 60,
+        "INSUFFICIENT_EVIDENCE": 60
+      },
+      "sha256": "69a15ada4db9131aef8884b97206fcfffd7058340d551b7a79fcbe6bb0445c31"
+    },
+    "test": {
+      "rows": 180,
+      "class_counts": {
+        "SUPPORTED": 60,
+        "INSUFFICIENT_EVIDENCE": 60,
+        "CONTRADICTED": 60
+      },
+      "sha256": "390ca93b325f60a910c1c4a973901915574c570011690c3a7301a708458db94c"
+    }
+  },
+  "leakage_checks": {
+    "train_validation_group_overlap": 0,
+    "train_test_group_overlap": 0,
+    "validation_test_group_overlap": 0,
+    "train_validation_source_overlap": 0,
+    "train_test_source_overlap": 0,
+    "validation_test_source_overlap": 0
+  },
+  "exact_duplicate_counts": {
+    "train": 0,
+    "validation": 0,
+    "test": 0
+  },
+  "near_duplicate_pairs": {
+    "train": [
+      {
+        "claim_group_id": "160785",
+        "left_source_id": "160785:a463fee3-d463-4b10-a461-9f16d1c20cbb",
+        "right_source_id": "160785:7c095d99-5d1d-418d-8c40-59ef87d7d5f6",
+        "left_label": "CONTRADICTED",
+        "right_label": "CONTRADICTED",
+        "token_jaccard": 0.86
+      }
+    ],
+    "validation": [],
+    "test": []
+  },
+  "near_duplicate_threshold": "token Jaccard >= 0.85 within claim groups",
+  "test_policy": "Test rows are audit-only and must not influence training, checkpoint selection, thresholds, or hyperparameters.",
+  "label_counts_are": "measured by this preparation run, not assumed from configuration"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "experiment": "experiment3_multi_evidence_contradiction_boundary",
+  "status": "prepared_not_run",
+  "seed": 113,
+  "hypothesis": "Improve separation between CONTRADICTED and INSUFFICIENT_EVIDENCE using source-audited claim-plus-multiple-evidence examples, hard contradiction examples, and difficult related-neutral contrasts.",
+  "data": {
+    "primary_train": "ml/datasets/processed/experiment2/train.jsonl",
+    "primary_validation": "ml/datasets/processed/experiment2/validation.jsonl",
+    "held_out_test": "ml/datasets/processed/experiment2/test.jsonl",
+    "replacement_pool": "ml/datasets/processed/train.jsonl",
+    "output_dir": "ml/datasets/processed/experiment3_multi_evidence",
+    "manifest": "ml/training/experiment3/manifest.json",
+    "excluded_source_id": "160785:a463fee3-d463-4b10-a461-9f16d1c20cbb",
+    "retained_source_id": "160785:7c095d99-5d1d-418d-8c40-59ef87d7d5f6",
+    "evidence_passages": 3,
+    "distractor_max_claim_overlap": 0.18
+  },
+  "training": {
+    "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "tokenizer": "Qwen/Qwen2.5-1.5B-Instruct",
+    "strategy": "lora_bf16",
+    "quantization": "none",
+    "max_length": 1024,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 0.00005,
+    "scheduler": "cosine",
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "max_grad_norm": 0.3,
+    "max_epochs": 3,
+    "eval_steps": 100,
+    "early_stopping_patience": 2,
+    "early_stopping_threshold": 0.002,
+    "lora": {
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
+      "bias": "none"
+    },
+    "output_dir": "ml/training/outputs/experiment3-qwen2.5-1.5b-lora-bf16"
+  },
+  "smoke": {
+    "train_examples": 2,
+    "validation_examples": 2,
+    "max_steps": 2,
+    "output_dir": "ml/training/outputs/experiment3-qwen2.5-1.5b-lora-bf16/smoke"
+  },
+  "promotion": {
+    "baseline_accuracy": 0.6944444444,
+    "baseline_macro_f1": 0.6758189801,
+    "evaluation_protocol": "The frozen 180-row Experiment 2 held-out test is formatted as one evidence passage under the Experiment 3 prompt. It remains the primary comparable promotion protocol. The multi-evidence conflict challenge is secondary and cannot replace it.",
+    "required_metrics": ["accuracy", "macro_precision", "macro_recall", "macro_f1", "per_class_metrics", "confusion_matrix", "latency", "peak_vram"],
+    "rule": "Promote only when macro F1 exceeds 0.6758189801, or is within 0.005 only when both CONTRADICTED recall and INSUFFICIENT_EVIDENCE F1 improve. No per-class F1 may decline by more than 0.03 without a documented offsetting improvement on that boundary."
+  }
+}
