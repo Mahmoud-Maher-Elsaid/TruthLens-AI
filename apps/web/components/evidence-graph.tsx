@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Background, Controls, Edge, MarkerType, MiniMap, Node, ReactFlow } from "@xyflow/react";
+import { Background, Controls, Edge, MarkerType, Node, ReactFlow } from "@xyflow/react";
 import type { AuditReport } from "@/lib/types";
 
 const verdictColor = { SUPPORTED: "#39e58c", CONTRADICTED: "#ff5b68", INSUFFICIENT_EVIDENCE: "#f4b942" } as const;
@@ -23,5 +23,5 @@ export function EvidenceGraph({ report }: { report: AuditReport }) {
     });
     return { nodes: graphNodes, edges: graphEdges };
   }, [report, selected]);
-  return <div className="graph-shell"><div className="graph-header"><div><span className="tiny-label">INTERACTIVE RELATIONSHIP MAP</span><h3>Evidence graph</h3></div><p>Click a node to isolate its connection.</p></div><div className="graph-canvas" role="img" aria-label="Interactive graph connecting the original answer to claims, evidence, and verdicts"><ReactFlow nodes={nodes} edges={edges} onNodeClick={(_, node) => setSelected(current => current === node.id ? null : node.id)} fitView minZoom={0.35} maxZoom={1.5} proOptions={{ hideAttribution: true }}><Background color="#18313a" gap={24} size={1}/><Controls showInteractive={false}/><MiniMap nodeColor={node => node.className?.includes("supported") ? "#39e58c" : node.className?.includes("contradicted") ? "#ff5b68" : "#2de2e6"} maskColor="rgba(2,7,9,.72)"/></ReactFlow></div></div>;
+  return <div className="graph-shell"><div className="graph-header"><div><span className="tiny-label">INTERACTIVE RELATIONSHIP MAP</span><h3>Evidence graph</h3></div><p>Click a node to isolate its connection.</p></div><div className="graph-canvas" role="img" aria-label="Interactive graph connecting the original answer to claims, evidence, and verdicts"><ReactFlow nodes={nodes} edges={edges} onNodeClick={(_, node) => setSelected(current => current === node.id ? null : node.id)} fitView minZoom={0.35} maxZoom={1.5} proOptions={{ hideAttribution: true }}><Background color="#18313a" gap={24} size={1}/><Controls showInteractive={false}/></ReactFlow></div></div>;
 }

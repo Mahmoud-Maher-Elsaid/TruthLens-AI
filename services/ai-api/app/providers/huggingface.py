@@ -144,12 +144,16 @@ class BaselineNLIProvider:
     ) -> None:
         configure_model_cache()
         try:
+            import torch
             from transformers import pipeline
         except ImportError as exc:
             raise RuntimeError("Install requirements-ml.txt to enable baseline verification") from exc
         self.name = f"huggingface-nli:{model_name}"
         self.aggregation_policy = aggregation_policy
-        self._classifier = pipeline("text-classification", model=model_name, top_k=None)
+        # Modal assigns an L4 for this production function. Local CPU runs keep
+        # the same measured model and use the Transformers CPU code path.
+        device = 0 if torch.cuda.is_available() else -1
+        self._classifier = pipeline("text-classification", model=model_name, top_k=None, device=device)
 
     def verify(
         self,

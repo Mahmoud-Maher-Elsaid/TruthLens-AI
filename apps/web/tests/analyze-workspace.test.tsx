@@ -21,6 +21,13 @@ describe("AnalyzeWorkspace", () => {
     expect(screen.getByText("PRECOMPUTED DEMO")).toBeInTheDocument();
   });
 
+  it("loads the labeled demo when Demo Example is selected", () => {
+    render(<AnalyzeWorkspace />);
+    fireEvent.click(screen.getByRole("radio", { name: /demo example/i }));
+    expect((screen.getByLabelText(/response or factual claim/i) as HTMLTextAreaElement).value).toContain("Eiffel Tower");
+    expect(screen.getByText("PRECOMPUTED DEMO")).toBeInTheDocument();
+  });
+
   it("indexes an attached document before starting analysis", async () => {
     const upload = vi.spyOn(api, "uploadDocument").mockResolvedValue({
       document_id: "c2b1f6a7-0a87-4e55-a250-782737841d68", filename: "notes.txt",

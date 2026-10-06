@@ -111,6 +111,7 @@ class HealthResponse(StrictModel):
     status: Literal["ok", "degraded"]
     version: str
     backend_mode: str
+    provider: str
     model_readiness: str
     vector_store_readiness: str
 

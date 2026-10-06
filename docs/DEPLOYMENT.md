@@ -10,7 +10,15 @@
 
 ## Modal FastAPI service
 
-The repository includes a Modal ASGI entry point, but no live deployment is verified. Its current image installs the core API requirements and defaults to deterministic Demo mode. Real GPU model serving requires a separately configured image, GPU allocation, model dependencies, retrieval service, and measured validation before deployment. Set secrets through Modal, never source control.
+`services/ai-api/modal_app.py` deploys the real production baseline, not Demo mode. Its image installs `requirements-ml.txt`, includes the API package and compact benchmark summaries, and uses an L4 for the configured public models:
+
+- embedding: `sentence-transformers/all-MiniLM-L6-v2`
+- reranker: `cross-encoder/ms-marco-MiniLM-L-6-v2`
+- verifier: `cross-encoder/nli-deberta-v3-small`
+
+The Modal Volume `truthlens-huggingface-cache` retains model cache files between cold starts. The current FAISS store is in memory, so documents uploaded through `/api/v1/documents` are available only to the active container and are not durable across cold starts. Use the configured Qdrant backend for durable shared retrieval when that product requirement is enabled.
+
+Before redeploying after Vercel is available, set `TRUTHLENS_CORS_ORIGINS` to the exact HTTPS Vercel origin. The deployment default remains the narrow local origin `http://localhost:3000`; it never uses a wildcard. Public model downloads do not require a Hugging Face token. Configure Modal or Qdrant credentials only through their respective secret/environment mechanisms, never source control.
 
 ## Container / other Python host
 

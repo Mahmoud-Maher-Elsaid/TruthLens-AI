@@ -7,6 +7,7 @@ def test_health(client):
     response = client.get("/health")
     assert response.status_code == 200
     assert response.json()["backend_mode"] == "DEMO"
+    assert response.json()["provider"] == "deterministic-demo-fixture-v1"
     assert response.json()["model_readiness"] == "ready (deterministic demo)"
     assert response.headers["X-Request-ID"]
 

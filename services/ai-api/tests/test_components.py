@@ -38,6 +38,32 @@ def test_claim_extractor_ignores_question_and_greeting():
     assert "claims" in CLAIM_OUTPUT_PARSER.get_format_instructions()
 
 
+def test_claim_extractor_splits_coordinated_claim_and_resolves_subject_pronoun():
+    claims = ClaimExtractor().extract(
+        "The Eiffel Tower is in Paris. It was completed in 1920 and stands 330 metres tall."
+    )
+    assert claims == [
+        "The Eiffel Tower is in Paris.",
+        "The Eiffel Tower was completed in 1920.",
+        "The Eiffel Tower stands 330 metres tall.",
+    ]
+
+
+def test_claim_extractor_splits_coordinated_factual_predicates():
+    claims = ClaimExtractor().extract(
+        "Python was created by Guido van Rossum and was first released in 1991."
+    )
+    assert claims == [
+        "Python was created by Guido van Rossum.",
+        "Python was first released in 1991.",
+    ]
+
+
+def test_claim_extractor_keeps_noun_coordination_together():
+    claims = ClaimExtractor().extract("Paris and London are major European cities.")
+    assert claims == ["Paris and London are major European cities."]
+
+
 async def test_lexical_retrieval_returns_best_match():
     store = LexicalDemoStore()
     await store.add(["Paris is in France", "Tokyo is in Japan"], [{}, {}])

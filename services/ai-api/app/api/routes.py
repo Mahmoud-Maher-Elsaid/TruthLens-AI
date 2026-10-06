@@ -46,7 +46,14 @@ async def health(request: Request) -> HealthResponse:
     ):
         model_readiness = "degraded (model fallback active)"
     degraded = "degraded" in model_readiness or "degraded" in vector_readiness or "empty" in vector_readiness
-    return HealthResponse(status="degraded" if degraded else "ok", version=request.app.version, backend_mode=settings.mode, model_readiness=model_readiness, vector_store_readiness=vector_readiness)
+    return HealthResponse(
+        status="degraded" if degraded else "ok",
+        version=request.app.version,
+        backend_mode=settings.mode,
+        provider=orchestrator.provider.name,
+        model_readiness=model_readiness,
+        vector_store_readiness=vector_readiness,
+    )
 
 
 @router.post("/analyze", response_model=AuditReport)
